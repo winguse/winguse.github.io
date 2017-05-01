@@ -26,6 +26,11 @@ github_username: winguse
 markdown: kramdown
 highlighter: rouge
 theme: minima
+
+google_analytics: UA-7801267-7
+disqus:
+  shortname: winguse
+
 gems:
   - jekyll-feed
 exclude:
