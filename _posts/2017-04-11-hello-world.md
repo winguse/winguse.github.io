@@ -7,3 +7,10 @@ categories: default
 
 This is the first post on Github Pages: Hello World!
 
+```javascript
+
+function main() {
+  console.log('hello world');
+}
+
+```
