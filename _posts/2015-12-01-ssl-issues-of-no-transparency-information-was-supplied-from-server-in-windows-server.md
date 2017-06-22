@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SSL issues of "no transparency information was supplied from server" in Windows Server"
+title: "SSL issues of 'no transparency information was supplied from server' in Windows Server"
 date: 2015-12-01 15:49:54 +0000
 ---
 
