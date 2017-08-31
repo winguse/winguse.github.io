@@ -28,7 +28,7 @@ date: 2017-08-31 15:31:00 +0800
 - 嵌套式组合的时候：`A` 有一个成员是 `B` 的实例，`B` 的一个成员是 `C` 的实例，而你想注入的是 `C` 的成员。
 - 一下子没看到对于每次都新建一个实例的注入应该是怎样的姿势
 
-当然，上面没这些，都只是证明了我自己图样图森破，知道前几天 [Daniel](https://github.com/danielyli) 帮我做 CR 的时候，推荐我看[这个文章](http://jonasboner.com/real-world-scala-dependency-injection-di/)，我内心是震撼的，竟然有 `trait ***Component` 这样的操作！
+当然，上面这些，都只是证明了我自己图样图森破，知道前几天 [Daniel](https://github.com/danielyli) 帮我做 CR 的时候，推荐我看[这个文章](http://jonasboner.com/real-world-scala-dependency-injection-di/)，我内心是震撼的，竟然有 `trait ***Component` 这样的操作！
 
 那篇文章还讨论了点其他的，在说 `Scala` 里面的 `Cake Pattern` 也并没有明显地点除了多层嵌套下面的实现方式，这里我想贴一个代码。
 
