@@ -143,3 +143,75 @@ ipset=/.google.com/freeset # add all resoved results to ipset freeset
 ```
 
 两行一组，尽情添加你所爱。重启，应该就好了。
+
+---
+
+更新：
+
+考虑到多节点自动分流的问题，测试发现可以使用 `mwan` 这个包，同时，这个包还带 Web UI。
+
+功能上，上文 `iptables` 后面的部分可以省略（值保留 `ipset`）。界面中 `/cgi-bin/luci/admin/network/mwan/advanced/mwanconfig` 这个路径的一个配置可以长成这样：
+
+```
+config rule 'freeset'
+	option proto 'all'
+	option sticky '0'
+	option ipset 'freeset'
+	option use_policy 'wg_blanced'
+
+config rule 'default_rule'
+	option dest_ip '0.0.0.0/0'
+	option proto 'all'
+	option sticky '0'
+	option use_policy 'default_policy'
+
+config interface 'wg0'
+	option enabled '1'
+	option reliability '1'
+	option count '1'
+	option timeout '3'
+	option down '3'
+	option up '1'
+	option interval '3'
+
+config interface 'wan'
+	option enabled '1'
+	option reliability '1'
+	option count '1'
+	option timeout '2'
+	option interval '5'
+	option down '3'
+	option up '3'
+
+config policy 'default_policy'
+	option last_resort 'default'
+	list use_member 'wan_default'
+
+config member 'wan_default'
+	option interface 'wan
+	option metric '1'
+
+config member 'wg0_default'
+	option interface 'wg0'
+
+config policy 'wg_blanced'
+	option last_resort 'default'
+	list use_member 'wg0_default'
+	list use_member 'wg1_default'
+
+config member 'wg1_default'
+	option interface 'wg1'
+
+config interface 'wg1'
+	option enabled '1'
+	option reliability '1'
+	option count '1'
+	option timeout '2'
+	option interval '5'
+	option down '3'
+	option up '3'
+
+```
+
+值得一提的是，貌似是不完整 2 层实现，所以 Wireguard 不能指定 ping 的端口，所以 `ping -I wg0 192.168.0.1` 类似的命令总是挂的。所以，不能使用自动发现比较可惜。不过上面这个配置，在一个节点挂了，blance 策略貌似还是可以工作的。
+
