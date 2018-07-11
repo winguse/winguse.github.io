@@ -18,7 +18,7 @@ email: github@winguse.com
 description: > # this means to ignore newlines until "baseurl:"
   This is Yingyu's pages hosted on Github.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://guse.win" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://wingu.se" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: winguse
 github_username: winguse
 
