@@ -1,3 +1,3 @@
 # Yingyu's Blog
 
-My Github Pages, please visit [https://guse.win](https://guse.win).
+My Github Pages, please visit [https://wingu.se](https://wingu.se).
