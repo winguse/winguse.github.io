@@ -36,6 +36,18 @@ input.onchange = function() {
 		"panorama": URL.createObjectURL(file)
 	});
 }
+
+if (location.search) {
+	var img = location.search.slice(1).split('&').map(p => p.split('=')).filter(p => p[0] === 'img')[0];
+	if (img) {
+		pannellum.viewer('panorama', {
+			"autoLoad": true,
+			"type": "equirectangular",
+			"panorama": img[1],
+		});
+	}
+}
+
 </script>
 </body>
 </html>
