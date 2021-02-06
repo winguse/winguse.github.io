@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Wireguard"
+title: 'Wireguard 配置指南'
 date: 2018-03-11 16:35:00 +0800
 ---
 
@@ -80,4 +80,3 @@ interface: wg0
 将 `Public_Key` 填到另外一个电脑就 OK 啦！
 
 > 本文配合 [Open WRT / Wireguard / IPSet / Route](/2018/03/11/openwrt-usb-wifi-wireguard-ipset-dnsmasq-iptables-route.html) 食用效果更佳。
-

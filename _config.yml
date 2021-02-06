@@ -32,7 +32,7 @@ google_analytics: UA-7801267-7
 disqus:
   shortname: winguse
 
-gems:
+plugins:
   - jekyll-feed
 exclude:
   - Gemfile
