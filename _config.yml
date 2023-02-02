@@ -22,6 +22,9 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://wingu.se" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: winguse
 github_username: winguse
+mastodon:
+- username: winguse
+  instance: m.wingu.se
 
 # Build settings
 markdown: kramdown
