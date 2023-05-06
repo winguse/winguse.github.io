@@ -11,6 +11,8 @@ date: 2023-04-21 21:30:00 +0000
 ```bash
 #!/bin/sh
 
+#!/bin/sh
+
 sysctl -w net.ipv4.ip_forward=1
 iptables -P FORWARD DROP
 iptables -F FORWARD
@@ -21,14 +23,22 @@ prv_addr=192.168.222.2
 pub_if=eth0
 prv_if=wg_px
 proto=tcp
-bind_port=5201
 
-iptables -t nat -A PREROUTING -p $proto -d $pub_addr --dport $bind_port -j DNAT --to $prv_addr
-iptables -t nat -A POSTROUTING -p $proto -s $prv_addr -j SNAT --to $pub_addr
 
-iptables -I FORWARD -p $proto -i $pub_if -o $prv_if -d $prv_addr --dport $bind_port -j ACCEPT
-#iptables -I FORWARD -p $proto -i $prv_if -o $pub_if -s $prv_addr --sport $bind_port -j ACCEPT
+port_map() {
+  bind_port=$1
+  prv_port=$2
+
+  iptables -t nat -A PREROUTING -p $proto -d $pub_addr --dport $bind_port -j DNAT --to $prv_addr:$prv_port
+  iptables -I FORWARD -p $proto -i $pub_if -o $prv_if -d $prv_addr --dport $prv_port -j ACCEPT
+  iptables -t nat -A POSTROUTING -p $proto -s $prv_addr -j SNAT --to $pub_addr:$bind_port
+}
+
 iptables -I FORWARD -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+iptables -I FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+
+port_map 443 40443
+port_map 80  40080
 
 # tcpdump -i $prv_if $proto port $bind_port
 ```
@@ -39,16 +49,22 @@ iptables -I FORWARD -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
 
 ```bash
 #!/bin/sh
+#!/bin/sh
 
 fw_gw=192.168.222.1
 fw_if=wg_px
 fw_table=fwio
 mk_value=75
+docker_if=br-web-services
 
 ip route add default via $fw_gw dev $fw_if table $fw_table
 
+iptables -t mangle -F PREROUTING
+iptables -t mangle -F OUTPUT
+
 iptables -t mangle -I PREROUTING -i $fw_if -j CONNMARK --set-mark $mk_value
-iptables -t mangle -A OUTPUT     -m connmark --mark $mk_value -j CONNMARK --restore-mark
+iptables -t mangle -I OUTPUT     -m connmark --mark $mk_value -j CONNMARK --restore-mark
+iptables -t mangle -I PREROUTING -i $docker_if -m connmark --mark $mk_value -j CONNMARK --restore-mark
 ip rule add fwmark $mk_value table $fw_table
 
 ```
