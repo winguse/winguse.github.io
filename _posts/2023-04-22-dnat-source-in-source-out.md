@@ -11,15 +11,16 @@ date: 2023-04-21 21:30:00 +0000
 ```bash
 #!/bin/sh
 
-#!/bin/sh
-
 sysctl -w net.ipv4.ip_forward=1
 iptables -P FORWARD DROP
 iptables -F FORWARD
 iptables -t nat -F
 
+wg-quick down wg_px
+wg-quick up wg_px
+
 pub_addr=1.2.3.4
-prv_addr=192.168.222.2
+prv_addr=192.168.101.2
 pub_if=eth0
 prv_if=wg_px
 proto=tcp
@@ -40,7 +41,6 @@ iptables -I FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-
 port_map 443 40443
 port_map 80  40080
 
-# tcpdump -i $prv_if $proto port $bind_port
 ```
 
 上面这段写完以后，就发现一个很奇怪的事情，回程的数据包不知道为啥有给我重新发到了 wireguard 上面了。我搞不定，也没搜到结果。。最后想着这个不会是个 bug 吧，然后换了一个机器，就发现没问题了。。害我没了 2 小时。。
@@ -49,22 +49,56 @@ port_map 80  40080
 
 ```bash
 #!/bin/sh
-#!/bin/sh
 
-fw_gw=192.168.222.1
-fw_if=wg_px
-fw_table=fwio
-mk_value=75
 docker_if=br-web-services
 
-ip route add default via $fw_gw dev $fw_if table $fw_table
+ensure_chain() {
+  name=$1
+  sys_chain=$2
+  new_chain=$1_$2
+  (iptables -t mangle -L | grep -qF -- "Chain $new_chain") || \
+    (iptables -t mangle -N $new_chain && iptables -t mangle -I $sys_chain -j $new_chain)
+  iptables -t mangle -F $new_chain
+}
 
-iptables -t mangle -F PREROUTING
-iptables -t mangle -F OUTPUT
+ensure_chain WG_PX PREROUTING
+# ensure_chain WG_PX OUTPUT
 
-iptables -t mangle -I PREROUTING -i $fw_if -j CONNMARK --set-mark $mk_value
-iptables -t mangle -I OUTPUT     -m connmark --mark $mk_value -j CONNMARK --restore-mark
-iptables -t mangle -I PREROUTING -i $docker_if -m connmark --mark $mk_value -j CONNMARK --restore-mark
-ip rule add fwmark $mk_value table $fw_table
+
+ensure_line() {
+  file=$1
+  line="$2"
+  grep -qF -- "$line" $file || echo $line >> $file
+}
+
+same_in_out() {
+  fw_if=$1
+  fw_table=$1_table
+  mk_value=$2
+
+  # wireguard
+  wg-quick down $fw_if
+  wg-quick up $fw_if
+
+  # route
+  ensure_line /etc/iproute2/rt_tables "$mk_value $fw_table"
+  ip route flush table $fw_table
+  ip route add default dev $fw_if table $fw_table
+  existing_rule_count=$(ip rule list fwmark $mk_value | wc -l)
+  for i in $(seq 1 $existing_rule_count)
+  do
+    ip rule delete fwmark $mk_value
+  done
+  ip rule add fwmark $mk_value table $fw_table
+
+  # iptable markers
+  iptables -t mangle -I WG_PX_PREROUTING -i $fw_if -j CONNMARK --set-mark $mk_value
+  # OUTPUT only for host itself, but it's using docker here
+  # iptables -t mangle -I WG_PX_OUTPUT     -m connmark --mark $mk_value -j CONNMARK --restore-mark
+  iptables -t mangle -I WG_PX_PREROUTING -i $docker_if -m connmark --mark $mk_value -j CONNMARK --restore-mark
+}
+
+
+same_in_out wg_vps    101
 
 ```
