@@ -32,7 +32,7 @@ port_map() {
 
   iptables -t nat -A PREROUTING -p $proto -d $pub_addr --dport $bind_port -j DNAT --to $prv_addr:$prv_port
   iptables -I FORWARD -p $proto -i $pub_if -o $prv_if -d $prv_addr --dport $prv_port -j ACCEPT
-  iptables -t nat -A POSTROUTING -p $proto -s $prv_addr -j SNAT --to $pub_addr:$bind_port
+  iptables -t nat -A POSTROUTING -p $proto -s $prv_addr --sport $prv_port -j SNAT --to $pub_addr:$bind_port
 }
 
 iptables -I FORWARD -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
