@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "从 YubiKey 上导入 GPG public key"
-date: 2023-04-21 21:30:00 +0000
+date: 2023-11-18 20:30:00 +0000
 ---
 
 本文主要参考了[这篇博客](https://www.nicksherlock.com/2021/08/recovering-lost-gpg-public-keys-from-your-yubikey/)，以及[这里](https://github.com/drduh/YubiKey-Guide/tree/master)，这里是一个简单总结。
@@ -31,5 +31,15 @@ gpg --edit-key A83F5C04715B2C25DB2FBEA7DBBF1C31DD587CC6
 
 # admin the yubikey
 gpg --card-edit
+
+# encrypt
+gpg --encrypt \
+  --recipient BE387B4AEF2E85A025C0EAF8A603F43145D6FC6D \
+  --recipient A83F5C04715B2C25DB2FBEA7DBBF1C31DD587CC6 \
+  --output output.gpg \
+  input_file.txt
+
+# list the encrypted file
+gpg --pinentry-mode cancel --list-packets file.gpg
 ```
 
