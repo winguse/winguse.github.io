@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Only Apple can do: allow Apps tracking users' location without consensus"
+title: "Apple allows applications to track user locations without authorization"
 date: 2023-11-30 16:30:00 +0000
 ---
 
-> 中文版在文末。
+> 中文在英文文末
 
 Apple asserts itself as a champion of user privacy; however, this claim will be proven untrue in this article.
 For almost a decade, Apple allowed apps had the capability to track users' locations without affording them the option to disable this feature or even raising awareness about it.
@@ -80,6 +80,8 @@ However, it has only very limited public awareness. I also brought this concern 
 
 ![Apple email response regarding HotspotHelper](/images/apple-response-to-hotspot-helper.jpg)
 
+## Conclusions
+
 I strongly advocate for Apple to offer users the option to disable this feature, akin to other privacy settings such as location and notifications.
 Apps should explicitly seek permission before accessing this feature, ensuring users have the ability to grant or deny access while using the app.
 
@@ -87,9 +89,7 @@ As the conversation around digital privacy continues to evolve, Apple finds itse
 The question remains: can Apple maintain its commitment to privacy while addressing concerns raised by the HotspotHelper feature?
 Only time will tell how this controversial aspect fits into Apple's broader privacy narrative.
 
----
-
-Credit: This article was written with the assistance of ChatGPT for the purpose of refining my English writing.
+> Credit: This article was written with the assistance of ChatGPT for the purpose of refining my English writing.
 
 ---
 
@@ -166,6 +166,8 @@ class LocationTrackingManager {
 
 ![苹果关于 HotspotHelper 的电子邮件回应](/images/apple-response-to-hotspot-helper.jpg)
 
+## 小结
+
 我强烈主张苹果向用户提供禁用此功能的选项，类似于其他隐私设置，如位置和通知。
 应用程序在访问此功能之前应明确请求权限，确保用户在使用应用程序时具有授予或拒绝访问的能力。
 
@@ -173,6 +175,4 @@ class LocationTrackingManager {
 问题仍然是：苹果是否希望在解决 HotspotHelper 功能引起的担忧的，保持对隐私的承诺？
 只有时间能告诉我们这种致用户隐私不顾的行为，会如何融入到苹果宏大的隐私叙事中。
 
----
-
-致谢：本文是在 ChatGPT 的协助下写成的，目的是完善我的英语写作。
+> 致谢：本文是在 ChatGPT 的协助下写成的，目的是完善我的英语写作。
