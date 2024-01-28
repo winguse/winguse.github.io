@@ -31,9 +31,6 @@ markdown: kramdown
 highlighter: rouge
 theme: minima
 
-disqus:
-  shortname: winguse
-
 plugins:
   - jekyll-feed
 exclude:
