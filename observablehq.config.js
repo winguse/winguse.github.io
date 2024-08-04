@@ -94,6 +94,9 @@ export default {
   <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="64x64">
   <link rel="stylesheet" type="text/css" href="style/default.css">
   <link rel="prefetch" id="social-icons-prefetch" type="text/svg" href="images/minima-social-icons.svg">
+  <link rel="alternate" type="application/json" href="https://wingu.se/feed.json" title="Yingyu Pages JSON Feed">
+  <link rel="alternate" type="application/atom+xml" href="https://wingu.se/atom.xml" title="Yingyu Pages Atom Feed">
+  <link rel="alternate" type="application/rss+xml" href="https://wingu.se/rss.xml" title="Yingyu Pages RSS Feed">
   `,
 
   // The path to the source root.
@@ -109,21 +112,20 @@ export default {
   footer: `
 <div id="footer">
   © ${new Date().getFullYear()}
-</div>
-<script>
-const socialIconUrl = document.querySelector('#social-icons-prefetch').href;
-document.querySelector('#footer').innerHTML = '©' + new Date().getFullYear() + [
-  ['github', 'winguse', 'https://github.com/winguse'],
-  ['mastodon', 'winguse', 'https://m.wingu.se/@winguse'],
-].map(([icon, username, url]) => \`
-  <a href="\${url}">
+  ${[
+      ['github', 'winguse', 'https://github.com/winguse'],
+      ['mastodon', 'winguse', 'https://m.wingu.se/@winguse'],
+      ['rss', 'RSS', 'https://wingu.se/rss.xml'],
+      ['rss', 'Atom', 'https://wingu.se/atom.xml'],
+    ].map(([icon, username, url]) => `
+  <a href="${url}">
     <svg class="svg-icon">
-      <use xlink:href="\${socialIconUrl}#\${icon}"></use>
+      <use xlink:href="https://wingu.se/minima-social-icons.svg#${icon}"></use>
     </svg>
-    <span class="username">\${username}</span>
+    <span class="username">${username}</span>
   </a>
-\`).join('');
-</script>
+`).join('')}
+</div>
   `, // what to show in the footer (HTML)
   // sidebar: true, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
