@@ -1,0 +1,20 @@
+
+#footer a {
+  margin-left: 1em;
+}
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: #828282;
+  vertical-align: text-top;
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote {
+  border-left: #828282 0.2em solid;
+  padding-left: 0.5em;
+}
