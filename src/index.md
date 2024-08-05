@@ -10,6 +10,24 @@ const world = await FileAttachment("data/countries-110m.json").json();
 const land = topojson.feature(world, world.objects.land);
 ```
 
+短的东西都在长毛象，比如最近一条：
+
+<p>
+<iframe src="about:blank" class="mastodon-embed" style="width: 100%; border: 0" allowfullscreen="allowfullscreen"></iframe><script src="https://m.wingu.se/embed.js" async="async"></script>
+</p>
+
+```js
+async function getRecentMastodonUrl() {
+  const recentReq = await fetch("https://m.wingu.se/@winguse.rss");
+  const recentXml = await recentReq.text();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(recentXml, "application/xml");
+  return [...doc.querySelectorAll("item link")].map((x) => x.textContent);
+}
+const urls = await getRecentMastodonUrl();
+document.querySelector("iframe.mastodon-embed").src = urls[0] + "/embed";
+```
+
 ```js
 const longitude = view(
   Inputs.range([-180, 180], {

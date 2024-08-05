@@ -93,7 +93,6 @@ export default {
   head: `
   <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="64x64">
   <link rel="stylesheet" type="text/css" href="style/default.css">
-  <link rel="prefetch" id="social-icons-prefetch" type="text/svg" href="images/minima-social-icons.svg">
   <link rel="alternate" type="application/json" href="https://wingu.se/feed.json" title="Yingyu Pages JSON Feed">
   <link rel="alternate" type="application/atom+xml" href="https://wingu.se/atom.xml" title="Yingyu Pages Atom Feed">
   <link rel="alternate" type="application/rss+xml" href="https://wingu.se/rss.xml" title="Yingyu Pages RSS Feed">
