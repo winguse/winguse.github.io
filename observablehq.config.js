@@ -109,6 +109,10 @@ export default {
     return `<h1>${title}</h1><small>${timeScript}</small>`;
   }, // what to show in the header (HTML)
   footer: `
+<section id="isso-thread">
+    <noscript>Javascript needs to be activated to view comments.</noscript>
+</section>
+<script data-isso="https://comments.wingu.se/" src="https://comments.wingu.se/js/embed.min.js"></script>
 <div id="footer">
   © ${new Date().getFullYear()}
   ${[
