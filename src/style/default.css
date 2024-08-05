@@ -190,7 +190,7 @@ h4.isso-thread-heading {
 .isso-textarea {
   outline: 0;
   width: 100%;
-  resize: none;
+  resize: vertical;
 }
 .isso-form-wrapper input[type="checkbox"] {
   vertical-align: middle;
