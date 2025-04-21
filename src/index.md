@@ -33,7 +33,7 @@ const longitude = view(
   Inputs.range([-180, 180], {
     label: "longitude",
     step: 1,
-    value: -90,
+    value: 180,
   })
 );
 const latitude = view(
@@ -74,7 +74,7 @@ const sunnyvale = {
 const seattle = {
   longitude: -122.3,
   latitude: 47.6,
-  weight: 3,
+  weight: (new Date()).getFullYear() - 2023,
 };
 const visited = [zhaoqing0, changcun, beijing, zhaoqing1, sunnyvale, seattle];
 visited.forEach((v) => (v.weight = Math.log(Math.log(v.weight))));
