@@ -56,7 +56,7 @@ for (const { title, path } of selectedPages) {
     id: pageUrl,
     link: pageUrl,
     description: main.text().slice(0, 100) + '...',
-    content: main.html(),
+		content: `<p><img src="https://view-counter.winguse.workers.dev/?r=wingu.se${path.replace(/\.html$/, '')}&from=feed" style="vertical-align: middle; height: 1em;"/></p>` + main.html(),
     author: [
       {
         name: "Yingyu Cheng",
