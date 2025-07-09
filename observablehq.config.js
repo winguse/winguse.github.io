@@ -129,7 +129,7 @@ export default {
     <span class="username">${username}</span>
   </a>
 `).join('')}
-<a href="https://comments.wingu.se:8443/about" style="width: 0; height: 0; display: block;">Honeypot</a>
+<a href="https://comments.wingu.se:8443/about" style="width: 0; height: 0; display: block; overflow: hidden;">Honeypot</a>
 </div>
   `, // what to show in the footer (HTML)
   // sidebar: true, // whether to show the sidebar
