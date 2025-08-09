@@ -107,7 +107,7 @@ export default {
   header: ({ title, path }) => {
     const ts = path2time[path]?.getTime();
     const timeScript = ts ? `<script>document.write(new Date(${ts}).toLocaleString())</script>` : '';
-    return `<h1>${title}</h1><small>${timeScript} <img src="https://view-counter.winguse.workers.dev/?r=wingu.se${path}" style="vertical-align: middle; height: 1em;"/></small>`;
+    return `<h1>${title}</h1><small>${timeScript} <img src="https://winguse.com/view-counter?r=wingu.se${path}" style="vertical-align: middle; height: 1em;"/></small>`;
   }, // what to show in the header (HTML)
   footer: `
 <section id="isso-thread">
