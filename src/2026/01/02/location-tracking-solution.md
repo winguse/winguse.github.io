@@ -740,7 +740,7 @@ if (import.meta.main) {
 ```
 
 
-```sql
+```sql run=false echo
 CREATE TYPE public.battery_state_type AS ENUM
     ('unknown', 'charging', 'full', 'unplugged');
 
