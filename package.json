@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf src/.observablehq/cache",
+    "build": "rimraf dist && observable build && ncp public/ dist/ && node .github/gen-feed.mjs",
+    "dev": "observable preview",
+    "deploy": "ncp public/ dist/ && observable deploy",
+    "observable": "observable"
+  },
+  "dependencies": {
+    "@observablehq/framework": "^1.7.0",
+    "d3-dsv": "^3.0.1",
+    "d3-time-format": "^4.1.0"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "feed": "^4.2.2",
+    "ncp": "^2.0.0",
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
