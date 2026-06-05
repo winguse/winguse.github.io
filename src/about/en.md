@@ -1,0 +1,14 @@
+---
+title: About
+date: 2024-08-04 11:39:00 -7000
+---
+
+<img style="max-height: 30vh" src="/images/mypic.jpg" alt="Avatar" />
+
+About me.
+
+My common ID is **winguse**. I'm a '90s kid with a bachelor's degree in Computer Science. Currently working at [Tubi](https://tubitv.com), and previously at [Microsoft](https://www.microsoft.com).
+
+Many people don't know how to pronounce my ID. Actually, it started just as an ID, and I didn't think about how to pronounce it. I'm Cantonese. When I chose the name, I put letters together and tried to translate my name into Cantonese; precisely, "wing u" would be the closest pronunciation. My icon is a group of white butterflies (see the image above, originating from a wallpaper I redrew in high resolution), so it carries the meaning of spreading wings and flying. "展" (spread) is a verb, let's call it "use" for now, hence this ID. If you insist on a pronunciation, /wɪŋɡʌs/ might be what I want—I hope I got the phonetic symbols right.
+
+There is very little updated content on this site, mostly trivial things and not much "substance". Mainly due to my lack of talent and learning, please bear with me~

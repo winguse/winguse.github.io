@@ -1,16 +1,16 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import { Feed } from "feed";
-import { promises as fs } from 'fs';
-import * as cheerio from 'cheerio';
+import { promises as fs } from "fs";
+import * as cheerio from "cheerio";
 
-import buildCache from '../src/.observablehq/cache/_build.json' with { type: "json" };
+import buildCache from "../src/.observablehq/cache/_build.json" with { type: "json" };
 
-const base = 'https://wingu.se';
-const email = 'emerald_cahoots0j@icloud.com';
+const base = "https://wingu.se";
+const email = "emerald_cahoots0j@icloud.com";
 
 const feed = new Feed({
   title: "Yingyu Pages",
@@ -29,34 +29,38 @@ const feed = new Feed({
   author: {
     name: "Yingyu Cheng",
     email,
-    link: "https://github.com/winguse"
-  }
+    link: "https://github.com/winguse",
+  },
 });
 
-
-const selectedPages = buildCache.pages.filter(({ path }) => /^\/\d{4}/.test(path)).sort(({ path: a }, { path: b }) => b.localeCompare(a)).slice(0, 10);
+const selectedPages = buildCache.pages
+  .filter(({ path }) => /^\/\d{4}/.test(path))
+  .sort(({ path: a }, { path: b }) => b.localeCompare(a))
+  .slice(0, 10);
 
 for (const { title, path } of selectedPages) {
-  const html = await fs.readFile(`${__dirname}/../dist${path}`, 'utf-8');
+  const html = await fs.readFile(`${__dirname}/../dist${path}`, "utf-8");
   const pageUrl = `${base}${path}`;
   const $ = cheerio.load(html);
-  const main = $('main')
-  for (const attr of ['src', 'href']) {
+  const main = $("main");
+  for (const attr of ["src", "href"]) {
     $(`[${attr}]`).each((_, el) => {
       const src = $(el).attr(attr);
       const abs = new URL(src, pageUrl);
       $(el).attr(attr, abs.toString());
     });
-  };
-  const [tsStr] = $('small script').html().match(/(\d+)/);
+  }
+  const [tsStr] = $("small script").html().match(/(\d+)/);
   const date = new Date(parseInt(tsStr));
 
   feed.addItem({
     title,
     id: pageUrl,
     link: pageUrl,
-    description: main.text().slice(0, 100) + '...',
-		content: `<p><img src="https://winguse.com/view-counter?r=wingu.se${path.replace(/\.html$/, '')}&from=feed" style="vertical-align: middle; height: 1em;"/></p>` + main.html(),
+    description: main.text().slice(0, 100) + "...",
+    content:
+      `<p><img src="https://winguse.com/view-counter?r=wingu.se${path.replace(/\.html$/, "")}&from=feed" style="vertical-align: middle; height: 1em;"/></p>` +
+      main.html(),
     author: [
       {
         name: "Yingyu Cheng",
@@ -76,11 +80,6 @@ for (const { title, path } of selectedPages) {
   });
 }
 
-
 await fs.writeFile(`${__dirname}/../dist/feed.json`, feed.json1());
 await fs.writeFile(`${__dirname}/../dist/rss.xml`, feed.rss2());
 await fs.writeFile(`${__dirname}/../dist/atom.xml`, feed.atom1());
-
-
-
-

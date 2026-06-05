@@ -3,14 +3,14 @@ title: Yingyu Pages
 date: 2024-08-04 11:39:00 -7000
 ---
 
-你好啊！你可以在左边找到文章的列表，虽然我也没写了啥..
+Hello! You can find the list of articles on the left, although I haven't written much...
 
 ```js
-const world = await FileAttachment("./data/countries-110m.json").json();
+const world = await FileAttachment("../data/countries-110m.json").json();
 const land = topojson.feature(world, world.objects.land);
 ```
 
-短的东西都在长毛象，比如最近一条：
+Short updates are all on Mastodon, for example, the most recent one:
 
 <p>
 <iframe src="about:blank" class="mastodon-embed" style="width: 100%; border: 0" allowfullscreen="allowfullscreen"></iframe><script src="https://m.wingu.se/embed.js" async="async"></script>
@@ -80,7 +80,7 @@ const visited = [zhaoqing0, changcun, beijing, zhaoqing1, sunnyvale, seattle];
 visited.forEach((v) => (v.weight = Math.log(Math.log(v.weight))));
 ```
 
-🏗️ 正在施工中的世界迷雾：
+🏗️ Fog of World under construction:
 
 ```js
 const metros = [];
