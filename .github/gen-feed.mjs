@@ -69,6 +69,9 @@ async function addPageToFeed(feed, { title, path: pagePath }) {
   }
   const scriptHtml = $("small script").html();
   const tsMatch = scriptHtml && scriptHtml.match(/(\d+)/);
+  if (!tsMatch) {
+    console.warn(`Warning: no timestamp found for ${pagePath}, using current time`);
+  }
   const date = tsMatch ? new Date(parseInt(tsMatch[1])) : new Date();
 
   feed.addItem({
