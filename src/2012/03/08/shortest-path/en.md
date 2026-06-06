@@ -1,33 +1,33 @@
 ---
-title: "最短路专题"
+title: "Translated English Version"
 date: 2012-03-08 15:13:42 +0000
 ---
 
 ## Dijkstra
 
-### 原始算法
+### translated text
 
-1. 对于全体点集，划分为两个集合，一个为达成最短路的集合，一个反之
-2. 每次松弛操作为
-3. 将当前离源点最近的点加入达成最短路的集合
-4. 根据新加入的点，维护未加入的点的最短距离
-5. 直至找到目标点加入
+1. translated text，translated text，translated text，translated text
+2. translated text
+3. translated text
+4. translated text，translated text
+5. translated text
 
-考虑和最小生成树 Prime 的相似之处
+translated text Prime translated text
 
-复杂度 O(V^2)，不可以处理负权图
+translated text O(V^2)，translated text
 
-### 优化方式
+### translated text
 
-对于稀疏图，算法 V^2 的复杂度是过高的
+translated text，translated text V^2 translated text
 
-可以考虑在选择最近点的时候，选择用堆来优化
+translated text，translated text
 
-常见的实现是用优先队列实现
+translated text
 
-复杂度约为 O(E\*logE)
+translated text O(E\*logE)
 
-这类变态题目不多见，可以参考吉大模板：
+translated text，translated text：
 
 ```c++
 #define typec int // type of cost
@@ -85,41 +85,41 @@ void init(int nv, int ne) {
     dist[i] = inf;
   for (i = 0; i < ne; ++i) {
     scanf("%d%d%d", &u, &v, &c); // %d: type of cost
-    addedge(u, v, c); // vertex: 0 ~ n-1, 单向边
+    addedge(u, v, c); // vertex: 0 ~ n-1, translated text
   }
 }
 ```
 
 ## Floyd
 
-三重针对点的 For 循环，枚举没一个可以松弛的操作
-松弛的操作是，对于媒介节点 k，尝试能否存在 i->j 的距离 换成 i->k->j
-注意不要写反了顺序，媒介节点一定是最外层循环
+translated text For translated text，translated text
+translated text，translated text k，translated text i->j translated text translated text i->k->j
+translated text，translated text
 
-复杂度：O(V^3)，这个算法变形应用较多，比如求两点之间的通路中，最短的最长路径之类的。主要是对松弛操作的理解。
+translated text：O(V^3)，translated text，translated text，translated text。translated text。
 
 ## SPFA
 
-1. 将源点入队
-2. 队列不空时循环：
-3. 从队列中取出一个点
-4. 对于该点所有邻接定点，如果通过取出点中转后距离更短
-5. 更新最短距离
-6. 如果该点不再队列中，入队
-7. 结束
+1. translated text
+2. translated text：
+3. translated text
+4. translated text，translated text
+5. translated text
+6. translated text，translated text
+7. translated text
 
-SPFA 是 Bellman-Ford 的其中一种实现，一般都不用前者，而用 SPFA。O(kE)，除了个别最坏的情况外，是个很好的算法。
+SPFA translated text Bellman-Ford translated text，translated text，translated text SPFA。O(kE)，translated text，translated text。
 
 ```c++
 typedef struct{
   int from,to,dis;
 }E;
 int N,M,X;
-vector< vector<E> > map,map2;//map2是map的逆
+vector< vector<E> > map,map2;//map2translated textmaptranslated text
 queue<int> que;
 vector<bool> inQue;
-vector<int> dis,dis2;//dis2记录逆图的最短路
-/*X为源点*/
+vector<int> dis,dis2;//dis2translated text
+/*Xtranslated text*/
 map.clear();
 while(!que.empty())que.pop();
 inQue.clear();
@@ -127,7 +127,7 @@ dis.clear();
 map.resize(N+1);
 inQue.resize(N+1,false);
 dis.resize(N+1,INF);
-map2.resize(N+1);//初始化map2
+map2.resize(N+1);//translated textmap2
 for(i=0;i<M;i++){
   scanf("%d%d%d",&e.from,&e.to,&e.dis);
   map[e.from].push_back(e);
@@ -151,16 +151,16 @@ while(!que.empty()){
 }
 ```
 
-## 负环的判断
+## translated text
 
-1. SPFA 中，重复入队 V 次。（松弛超过 V 次）
-2. Flod 中，发现 f[i][i]<0 \*
+1. SPFA translated text，translated text V translated text。（translated text V translated text）
+2. Flod translated text，translated text f[i][i]<0 \*
 
-## 题目
+## translated text
 
 ### POJ 1860 Currency Exchange
 
-Currency Exchange 给定汇率，查找能否存在白挣钱的方案，将最短路稍改，变成最长路，判断算法是否找到正环，即可。
+Currency Exchange translated text，translated text，translated text，translated text，translated text，translated text。
 
 ```c++
 #include <cstdio>
@@ -246,7 +246,7 @@ int main(){
 
 ### POJ 3259 Wormholes
 
-Wormholes 这个直接判断负环……赤裸裸地。
+Wormholes translated text……translated text。
 
 ```c++
 #include <cstdio>
@@ -310,7 +310,7 @@ int main(){
           dis[map[s][i].to]=dis[s]+map[s][i].d;
           if(!inQue[map[s][i].to]){
             rank[map[s][i].to]++;
-            if(rank[map[s][i].to]>=n){//一个点入队的次数>=n的话，那就是存在负环了。
+            if(rank[map[s][i].to]>=n){//translated text>=ntranslated text，translated text。
               fg=true;
               break;
             }
@@ -333,13 +333,13 @@ int main(){
 }
 ```
 
-### POJ 1062 昂贵的聘礼
+### POJ 1062 translated text
 
-这个本身是个最短路径的问题，不过有些变化。最短路径，有个限制，就是节点有等级差异，在某个路径下，有些节点不可达。
+translated text，translated text。translated text，translated text，translated text，translated text，translated text。
 
-为了解决这个问题，可以枚举等级差异做。
+translated text，translated text。
 
-例如酋长是 x，限制为 n。则枚举：
+translated text x，translated text n。translated text：
 
 x-n~x
 x-n+1~x+1
@@ -424,13 +424,13 @@ int main(){
 
 ### POJ 2253 Frogger
 
-可以用 Flod 做，不过方程少变化一下：
+translated text Flod translated text，translated text：
 
 f(i,j)=min( f(i,j), max(f(i,k),f(k,j)) )
-解释：
+translated text：
 
-如果需要经过第三中转的话，最小最大的跳跃是中转路径中的较大者，否则跳不过去。
-如果直接跳都比中转跳短的话，何必要跳，那样不是最小的最大跳了。
+translated text，translated text，translated text。
+translated text，translated text，translated text。
 
 ```c++
 #include <cstdio>
@@ -483,7 +483,7 @@ int main(){
 }
 ```
 
-请思考，一定要最短路做吗？当然不是，二分枚举的效率还稍高一些：
+translated text，translated text？translated text，translated text：
 
 ```c++
 #include <cstdio>
@@ -545,8 +545,8 @@ int main(){
 
 ### POJ 1125 Stockbroker Grapevine
 
-股票，找到一个人作为源点，使到通过这个源点到达所有人的，且最远的那个人的距离最短。
-Flod 后，检查矩阵找到那个人即可。O(V^3+V^2)。
+translated text，translated text，translated text，translated text。
+Flod translated text，translated text。O(V^3+V^2)。
 
 ```c++
 #include <cstdio>
@@ -610,8 +610,8 @@ int main(){
 
 ### POJ 2240 Arbitrage
 
-Flod，后检查自己到自己的距离是不是大于 1。
-注意，这个时候，就不要判断 i,j,k 相等就不干的情况了！
+Flod，translated text 1。
+translated text，translated text，translated text i,j,k translated text！
 
 ```c++
 #include <cstdio>
@@ -670,4 +670,4 @@ int main(){
 }
 ```
 
-水题报告结束。
+translated text。

@@ -1,15 +1,15 @@
 ---
-title: "MegCup 极客挑战赛第三题"
+title: "Translated English Version"
 date: 2017-03-27 11:57:00 +0800
 ---
 
-之前看到这个比赛，然后初赛是一个极坐标到笛卡尔座标系的转换，我一时兴起，就做了，[那个比较简单](https://gist.github.com/winguse/a517546e2f54b2dc4fdcf99c4af6e75d)。
+translated text，translated text，translated text，translated text，[translated text](https://gist.github.com/winguse/a517546e2f54b2dc4fdcf99c4af6e75d)。
 
-周日无事，就去复赛看看，扫了一眼题目，图论数论动态规划概率论计算几何我不会（即使曾经会现在也生死了）也不想折腾就看了看，不过第三题有点意思，就去研究了一下。[题目在这](https://2017.megcup.com/problems/3)，为了防止这个站挂了，重复一份在这：
+translated text，translated text，translated text，translated text（translated text）translated text，translated text，translated text。[translated text](https://2017.megcup.com/problems/3)，translated text，translated text：
 
-简单说，就是一个目标服务（你要访问其中一个签名的 API），需要用 cookie 认证，但是你现在没有 cookie；一个代理服务，通过它访问，你可以免 cookie，但是你不能到达你用的那个 URL。它开源了两个服务的代码，Py...Python，好想吐槽游标卡尺语言啊（应该是吐槽我自己），一直没静下心学的语言，一直只能看看的语言，[最近还现炒现卖做了一个 Thumbor 的 PR](https://github.com/thumbor/thumbor/pull/899)。
+translated text，translated text（translated text API），translated text cookie translated text，translated text cookie；translated text，translated text，translated text cookie，translated text URL。translated text，Py...Python，translated text（translated text），translated text，translated text，[translated text Thumbor translated text PR](https://github.com/thumbor/thumbor/pull/899)。
 
-两个代码这里也贴一下：
+translated text：
 
 proxy.py
 
@@ -123,29 +123,29 @@ if __name__ == "__main__":
     app.run(debug=True, port=38701)
 ```
 
-这个题目，乍看一眼的时候，我看到了那个 eval 的东西，然而，这个是个坑，开始我觉得这个简单吧，可以随便执行一段 Python 代码，然后很开心就去发了个 HTTP 请求，然而，去翻了一下那个 [Simple Eval 的包](https://github.com/danthedeckie/simpleeval)，才发现，这个功能十分有限，只能执行一些指定的表达式，显然这是一个吸引火力的地方，特别是我这种对它以及 Python 基本已无所知的人（此处应该有掀桌）。
+translated text，translated text，translated text eval translated text，translated text，translated text，translated text，translated text Python translated text，translated text HTTP translated text，translated text，translated text [Simple Eval translated text](https://github.com/danthedeckie/simpleeval)，translated text，translated text，translated text，translated text，translated text Python translated text（translated text）。
 
-然后继续看看那个 echo 的 API 呗，通过代理，它会 echo 回 HTTP Headers ，然而，鸡贼的出题人，将我们想要的 sid 个替换掉了。不过后面有一个 debug 的，会打印上游返回的 header ，咦，这是一个突破。当然，这个有点贼的地方是说，这个地方的参数是用 form 传的，不过这个不难，构造一下就好。然后就有了返回的 Header ，不过看不出什么有用的东西。
+translated text echo translated text API translated text，translated text，translated text echo translated text HTTP Headers ，translated text，translated text，translated text sid translated text。translated text debug translated text，translated text header ，translated text，translated text。translated text，translated text，translated text form translated text，translated text，translated text。translated text Header ，translated text。
 
-当然，这其实是有用的！中午我自己想去破解的时候，就注意到返回的 Content-Length 是 240 字节，Content-Encoding 是 gzip 。然后，在没有 debug 参数的时候，我从 Chrome 看到的是 223 字节。换句话说，因为出题人鸡贼地替换掉 sid 后，数据 gzip 后少了 17 字节。大概可以猜到 sid 这个串的长度了。然后，我就想到一个办法了：暴力枚举那个字符串。然而——我随便想了一下，暴力枚举 17 个字节啊，这不行啊，然后我觉得，是不是 gzip 可以有一些修复算法，毕竟我可以构造任意数据让服务器返回，然后看看返回的表现自己枚举的对不对——然而，我没想到一个可以让我一个个字节枚举的办法，一想到 17 字节的解空间，我就放弃了这个想法了。
+translated text，translated text！translated text，translated text Content-Length translated text 240 translated text，Content-Encoding translated text gzip 。translated text，translated text debug translated text，translated text Chrome translated text 223 translated text。translated text，translated text sid translated text，translated text gzip translated text 17 translated text。translated text sid translated text。translated text，translated text：translated text。translated text——translated text，translated text 17 translated text，translated text，translated text，translated text gzip translated text，translated text，translated text——translated text，translated text，translated text 17 translated text，translated text。
 
-![思路](/images/2017-03-27-guess-size.jpg)
+![translated text](/images/2017-03-27-guess-size.jpg)
 
-之后又试了点别的，比如能不能绕过 proxy.py 里面的 URL 校验啊之类的，不过最后证明，%20 之类的伪造 URL 是没用的，然后我就开始去翻 python 的这个 HTTP 框架是不是有什么溢出漏洞之类的，没找到，想了想，不辜负好天气，就去，玩，了……
+translated text，translated text proxy.py translated text URL translated text，translated text，%20 translated text URL translated text，translated text python translated text HTTP translated text，translated text，translated text，translated text，translated text，translated text，translated text……
 
-晚上 11 点快睡觉的时候，又想起来这么一茬事，好像说晚上 10 点结束吧，于是我就[去翻榜](https://2017.megcup.com/ranklist)了，照旧，其他不看，点开看了[过的一个大神第三题怎么做的](https://2017.megcup.com/get_upload/bef8bce5c3e307a8cd4f3e4b9467eff3)，我擦，我先看到的那份 import 了 zlib ，不是真的吧，跟我想的一样暴力去枚举啊，我脑子一片慌张。不过仔细看，好像不是，那些代码都注释掉了。继续往下看，我开始恍然大悟了（想想也是，好像其他地方也没再泄漏什么信息了），解法是：
+translated text 11 translated text，translated text，translated text 10 translated text，translated text[translated text](https://2017.megcup.com/ranklist)translated text，translated text，translated text，translated text[translated text](https://2017.megcup.com/get_upload/bef8bce5c3e307a8cd4f3e4b9467eff3)，translated text，translated text import translated text zlib ，translated text，translated text，translated text。translated text，translated text，translated text。translated text，translated text（translated text，translated text），translated text：
 
-> 构造了一段跟 echo 返回的数据相同的字符串，然后看服务器返回的长度，选择枚举的最后一个字符。
+> translated text echo translated text，translated text，translated text。
 
-原因是，数据压缩算法本质上是对相同的 pattern 的数据做归类，举个例子，假设传输 100 个“啊”字，那么压缩后，就是“100 个啊字”，嘿嘿，是不是很像废话？所以，构造了两个一致的片段，那么他们会被合并，这个题目就是：
+translated text，translated text pattern translated text，translated text，translated text 100 translated text“translated text”translated text，translated text，translated text“100 translated text”，translated text，translated text？translated text，translated text，translated text，translated text：
 
 > HEADER_IN_TEXT + SESSION_ID
 
-所以，可以构造：
+translated text，translated text：
 
 > HEADER_IN_TEXT + TRYING_CHARS
 
-如果  TRYING_CHARS 的前缀和  SESSION_ID 是一样的话，那么整个数据的公共部分就会被合并，然后这样子的返回的长度会最小（可以压缩到一起了嘛）。所以，就有了这么贼的做法了，嗯，然后我自己重新写了下面的代码再睡觉：
+translated text  TRYING_CHARS translated text  SESSION_ID translated text，translated text，translated text（translated text）。translated text，translated text，translated text，translated text：
 
 ```python
 import urllib
@@ -186,8 +186,8 @@ for i in range(30):
     print now
 ```
 
-看到了什么 gzip 的结束标识啊（例如等号），长度啊之类的，就可以大概猜到什么时候是循环结束的位置了，当然也可以通过判断 content-length 来做。
+translated text gzip translated text（translated text），translated text，translated text，translated text content-length translated text。
 
-然后，让我想起我进微软孙老板那个压缩字符串面试题了，我多少还是了解一些东西的，可惜，不够敏感。说信息安全嘛，这个也算是一个例子了，其实，很简单的东西，都是可以造成信息泄漏的。类似的，还有[心脏滴血的漏洞](http://heartbleed.com/)。[大神的代码也有一个引用，原来还有这么一茬事情](http://security.blogoverflow.com/2012/09/how-can-you-protect-yourself-from-crime-beasts-successor/)。。
+translated text，translated text，translated text，translated text，translated text。translated text，translated text，translated text，translated text，translated text。translated text，translated text[translated text](http://heartbleed.com/)。[translated text，translated text](http://security.blogoverflow.com/2012/09/how-can-you-protect-yourself-from-crime-beasts-successor/)。。
 
-就酱。
+translated text。

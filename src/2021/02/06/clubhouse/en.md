@@ -1,48 +1,48 @@
 ---
-title: "Clubhouse 体验"
+title: "Clubhouse Experience"
 date: 2021-02-06 20:00:00 +8000
 ---
 
-最近因为 [Elon Musk](https://twitter.com/elonmusk/status/1355983231988862978?s=20) 的一个推，这个 App 在我的圈子里也火起来了，主要是中文推特、科技圈。当然，这个 Clubhouse 不是我司用的那个[工单系统](https://clubhouse.io)。经过同事邀请，我也终于用上了，开始体验。
+Recently, because of [Elon Musk's tweet](https://twitter.com/elonmusk/status/1355983231988862978?s=20), this app became popular in my circles too, mainly Chinese Twitter and the tech scene. Of course, this Clubhouse is not the [ticketing system](https://clubhouse.io) my company uses. After getting invited by a colleague, I finally started using it.
 
-## 产品形态
+## Product form
 
-这个 App 目前是邀请机制的，一个人注册后，可以立刻获得 2 个邀请机会（后面好像不是每个人都有了）。而且会显示邀请的 credit，他们还把这个放在了每个人的 profile 里头，所以就在全网公开了这样一颗关系链二叉树，每棵树的树根都是某一个最原始的种子用户。
+The app currently uses an invitation mechanism. After registering, a user initially gets two invites (later this was not true for everyone). It also shows invite credits in each profile, effectively exposing a global invitation tree where each tree traces back to original seed users.
 
-Clubhouse 的每个人用户，有独立的 ID，名字，头像，可以写自己的一段 Profile 介绍，可以链接 Twitter，Instagram，可以关注别人也可以被关注。
+Each Clubhouse user has an ID, name, avatar, profile bio, optional Twitter/Instagram links, and can follow or be followed.
 
-Clubhouse 的帮助文档是放到了 Notion 上面的。
+Clubhouse's help docs are hosted on Notion.
 
-用户注册 Clubhouse 以后，可以选择感兴趣的领域，一个个领域里头一个个 Club，用户可以选择 Follow 某一个 Club。这部分基本上是中文社区好像还没开始认真体验的。好像是 host 几次 room 才可以创建 Club。
+After registration, users choose interests. Inside each interest there are clubs, and users can follow clubs. It seemed the Chinese community had not fully explored this part yet. I heard you need to host several rooms before creating a club.
 
-每个人都是 Host Room，可以是 Private 的，可以是允许 Follow 的人加入，也可以完全公开。在一个 Room 里头，可以有主人和管理员（Moderator）。房间的人可以举手发言，房主可以决定什么人可以举手，比如所有人、关注的、都不可以。
+Everyone can host a room: private, followers-only, or public. A room can have owners and moderators. Participants can raise hands, and hosts can control who is allowed to speak (everyone, followed users, or no one).
 
-用户的首屏就是正在发生的 Room 根据推荐、关注、或者关注的人在里头。还有日历，显示即将发生的活动。
+The home screen shows ongoing rooms based on recommendation, follow graph, and where your follows are currently present. There is also a calendar for upcoming events.
 
-用户的通知管理还是很完整的，比如被关注、发布的活动、有通讯录的朋友加入等等。
+Notification management is fairly complete: new followers, published events, contacts joining, etc.
 
-产品除了语音，没有别的沟通方式，比如文字图片都是没有做的。而且所以用户也没办法在 App 内并发沟通。但是在某个房间的时候还可以出去闲逛。
+The product supports only voice—no text or images. So users cannot do parallel in-app text communication, though you can still leave a room and browse elsewhere.
 
-内容上，这个都是实时的，比较随意，所以不会有很高质量内容（至少目前如此）。对我而言，我很多时候都觉得别人说话太慢了，没有倍速比较浪费时间。同时，因为没有具体的文本介绍，中间进去以后，不会立刻知道话题，要很长时间 bootstrap。内容本身也不会有录制，所以很难形成沉淀。更多就是一种讨论工具，社交属性。或许类似于头脑风暴是一个不错的场景。
+Content is real-time and casual, so quality is not consistently high (at least for now). For me, people often speak too slowly; without playback speed controls, it can feel inefficient. Also, because there is little textual context, if you join midway, it takes a long bootstrap time to understand the topic. And since content is usually not recorded, long-term accumulation is hard. It feels more like a discussion/social tool. Brainstorming may be a strong use case.
 
-技术上还是很厉害的，声音质量很好，切换网络的时候也可以快速重新上线。用的是[声网](https://www.agora.io/)的技术，然后声网一天之内就股票翻翻。所以，Clubhouse 的公司本身并不掌握核心技术。
+Technically, it is impressive: audio quality is good, and reconnection during network switching is quick. It uses [Agora](https://www.agora.io/) technology; Agora's stock even surged within a day. So Clubhouse itself does not own the core audio tech stack.
 
-## Clubhouse 解决了什么问题别人没解决的问题
+## What problem did Clubhouse solve that others did not?
 
-**视频化的空白区域**。我觉得解决了其中一个点是，说是现在 5G 了，都视频化了，但是视频很多场景是不合适的，比如我们开会，就不会开视频。这种语音的降维攻击把剩下的不想视频的收割了。同时，听东西的时候，人是可以继续做很多事情的，比如走路、做饭、开车。这种产品形态，有点像多年以前电台节目，你可以打电话进去跟主播聊天。
+**A gap left by video-first products.** One thing it solves is that even in the 5G era, many scenarios still are not suitable for video (for example, many meetings do not need cameras). Voice-only interaction captures users who do not want video. Also, while listening, people can still walk, cook, drive, etc. This resembles old radio programs where callers could join live.
 
-**实时沟通的社交网络**。这里我们可以先对比一下现存的在线声音视频方案，他们要么是点对点的私密会议、在线教学，要么就是点对多的直播。前者是私密的，非公开的，实时的；后者是多数是公开的，几乎实时的（目前的直播技术，至少会有秒级延迟）。我们或许可以把 Clubhouse 跟 YY 之类的游戏语音平台进行比较，但是这二者还是有点区别的，就是两个产品面对的用户群不一样。YY 那种产品，对于游戏用户的渗透是可以的，但是作为普通社交用户的渗透就会很差，这个跟产品形态还是有区别的。Cloud house 一开始就是奔着社交去做的。
+**A social network for real-time conversation.** Existing online audio/video products are often either point-to-point private meetings/teaching, or one-to-many livestreaming. The former are private and real-time; the latter are public and near-real-time with unavoidable latency. You can compare Clubhouse with game voice platforms like YY, but they target different audiences. YY penetrates gamer groups well, but less so for mainstream social users. Clubhouse was social-first from day one.
 
-**更加难以信息污染**。相较于文本，它有很强的发声成本，需要真人实时发言。相较于视频，普通人参与成本更低。所以如果想要使用水军，这种地方就很难了。
+**Harder to pollute with low-quality information at scale.** Compared to text, speaking requires higher real-time human cost. Compared to video, participation cost is lower for ordinary users. So organized spam/astroturfing is harder.
 
-## 中文圈的特殊之处
+## Special aspects of the Chinese-speaking community
 
-中国大陆用户想用这个还是有门槛的，需要用的 iOS 并且有一个境外的 AppleID，所以先进去的，都是科技圈的人物。也正因为这样，把我这种 nobody 跟大佬的距离拉近了。
+For users in mainland China, there are entry barriers: you need iOS and an overseas Apple ID. Early adopters were therefore mostly tech people. Because of this, someone like me felt much closer to high-profile people.
 
-第一个晚上，我听了几个圈：一个主体是中国的投资圈、产品经理，他们主要探讨这个产品在中国区怎么运营，怎么下沉到三四线城市。不过必可避免谈到可能性，这个产品做监管太难了，所以几个产品都不看好。也提到了商业化问题，另外一些投资人还在观察，觉得这个破圈太快了，所以可以先培养土壤，说不从后面有更大可能。另外一个就是飞猪（Flypig），此人网红，去哪都自带流量，我也听了第一个卖货（义务的），分享 3000 块可以买什么快乐，其中我买了个 App AutoSleep，还真的挺好用的。飞猪有句话很有意思：该死的邀请码，还要一个 iOS，还要没区账户，他的 follower 大堆大堆的 VC，一夜之间从华为换成了 iphone。还有一个香港的产品经理圈，当然这里就只谈产品了，相对境内的圈子，没有聊监管的问题。中文圈感觉最火的还是政治 Room，表示长了三十多年，第一次看出好几千人的社会化大讨论到凌晨三点。
+On my first night, I listened to several circles: one focused on Chinese investors and product managers discussing how this product might operate in China and reach lower-tier cities. Regulation concerns were unavoidable; several product people were pessimistic because moderation would be difficult. Monetization was also discussed. Some investors were still observing and thought viral spread was too fast, so maybe it was worth cultivating first. Another room involved Flypig, an influencer who brings traffic everywhere; I even listened to a voluntary "shopping" session on "what 3,000 RMB can buy for happiness," where I bought the AutoSleep app and found it useful. Flypig said something funny: with invite codes, iOS requirement, and overseas accounts, many of his VC followers switched from Huawei to iPhone overnight. I also listened to a Hong Kong product-manager circle that focused more purely on product and less on regulation than mainland circles. The hottest Chinese rooms still felt political; for the first time in 30+ years, I saw thousands of people in social discussion rooms until 3 a.m.
 
-因为监管，所以国内已经开始有人做 Copy Cat 的工作了。但是产品可以复制，但是这群人很难复制的。这很对，因为有些人是为了无国界来的，如果国内互联网来一个，我觉得他们就不回来了。
+Because of regulation concerns, domestic copycat efforts had already started. But while products can be copied, communities are harder to copy. That makes sense: some people came for borderless conversation, and if a heavily localized domestic clone appears, many may not return.
 
-## 所以，它有什么用？
+## So what is it useful for?
 
-我也不知道这个产品会演绎到什么形态。我觉得，最后应该都是内容为王，应该还是要有一些用户定期地分享一些内容。但是，这个也可以是陌生人社交的机会，就比如说，随便路过一个咖啡店，遇到了聊两句，寻找共同爱好，或者是就是缓解寂寞。或者是城市论坛。
+I do not know what final form this product will evolve into. In the end, content still rules, and it probably needs users who regularly share valuable content. But it can also create opportunities for social interaction among strangers—like passing by a coffee shop, chatting briefly, finding shared interests, or simply easing loneliness. It can also function as a kind of city forum.

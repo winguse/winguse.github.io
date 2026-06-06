@@ -1,29 +1,29 @@
 ---
-title: "免费的，才是最贵的，不能依赖商业公司"
+title: "Free Is the Most Expensive: Do Not Depend on Commercial Companies"
 date: 2017-04-22 11:58:00 +0800
 ---
 
-最近做了一件事情，写了一个爬虫抓微信公众号的内容。做这样一个事情的动机是，我不想再浪费时间在微信的碎片阅读上。在微信里面的阅读痛点太多了：
+Recently I did something: I wrote a crawler to fetch content from WeChat public accounts. The motivation was simple—I no longer wanted to waste time on fragmented reading inside WeChat. There are too many pain points:
 
-1. 对于一个公众号，你点开就得读完全部未读
-2. 排序是根据公众号整体做的，你要选择性阅读很难，每次只能看见一个公众号的最新一条
-3. 支持收藏，但是不是结构化数据，不能标记
-4. 封闭的数据政策，别想能够让腾讯给你导出，哪怕导出也是加密的私有格式，虚伪美其名曰保护用户
+1. For one public account, once you open it you basically have to go through all unread items.
+2. Sorting is account-level, making selective reading hard; each time you only see the latest article from one account.
+3. It supports bookmarking, but not as structured data, so you cannot tag things properly.
+4. Its data policy is closed. Do not expect Tencent to let you export data; even export formats are encrypted and proprietary, supposedly "for user protection."
 
-所以，现在我的做法就是将数据变成一个 RSS Feed ，不得不承认，这个作为 Web 2.0 开端的产物有其不可替代的先进性。
+So now I convert everything into an RSS feed. I have to admit that this classic early Web 2.0 product still has irreplaceable strengths.
 
-最近还发生一个事情，iOS 微信公众号文章赞赏被要求使用苹果的 IAP (In App Purchase) ，然后微信采取了鱼死网破的做法，直接砍掉了这个功能。仔细阅读苹果的条款，没有人不会觉得这个就是苹果霸王解释这个条款：赞赏没有购买任何实质性的功能和增值服务，然而苹果就是要抽成。
+Another recent incident: Apple required WeChat public-account tipping on iOS to use Apple IAP (In App Purchase), and WeChat responded by removing the feature entirely. Reading Apple's terms carefully, it is hard not to feel Apple is enforcing an overreaching interpretation: tipping does not buy substantive features or value-added services, yet Apple still takes a cut.
 
-这个事情上，我是倾向于微信的，不过也不太想为微信说话，原因同上：微信本身也是一个特别让人恶心的封闭生态，微信在垄断我们的通讯和社交关系，很多做法跟苹果这次比之有过之而无不及。
+On this issue, I side with WeChat, but I still do not want to defend it too much for the same reason above: WeChat itself is also a highly closed ecosystem, monopolizing communication and social graphs, and many of its practices are no better than Apple's in this case.
 
-作为商业公司，追逐利润无可厚非，只是有时候的吃相是在太难看。互联网起源于开放，然而被一再限制，这个精神是不可接受的。
+For commercial companies, pursuing profit is understandable. But sometimes the way they do it is ugly. The internet was born from openness, and repeated restrictions against that spirit are unacceptable.
 
-没有什么东西比数据更重要，这也是我为什么写了那个爬虫。在数据的开放性上，国内的公司都有类似的德行，自己生态圈的数据总是各种限制其流通，很没有互联网精神，作为对比，Google / Facebook 都会提供给用户或多或少的导出功能，并且致力于开放格式标准的制定。但 Google 也干出过停止 Google Reader 这个产品的事情，没有商业公司可以依赖。作为个体，我们应该清晰意识到这一点，所谓云计算，大型商业公司都是不可依赖的，这个时代免费的才是最贵的。
+Nothing is more important than data, and that is why I wrote the crawler. On data openness, many Chinese companies share similar behavior: they heavily restrict data flow inside their own ecosystems, which goes against internet spirit. In comparison, Google and Facebook provide at least some export capabilities and contribute to open format standards. But Google also shut down Google Reader before, so no commercial company is truly reliable. As individuals, we should be clear about this: so-called cloud services from large companies are not something to depend on forever. In this era, "free" is often the most expensive.
 
-类似的，最近我也发现 Facebook 的 Moves 的导出功能出 Bug 了，我导出的数据不完整了，好消息是，这个东西提供了一个易用开放的 API ，所以，下一步，我又有一个可以折腾的玩具了。另外一个就是自己的帐目，我试用过不少记账软件，然而都没想到让我安心用的，好用的，所以，我也打算写一个去抓银行的数据，可以方便打标签的。考虑到数据安全的问题，这些东西还是本地运行比较好，然后只使用云计算的基础存储设施做备份。简单说，至少确保可以从商业公司将自己的数据结构化导出。
+Similarly, I recently found that Facebook's Moves had a bug in its export feature, and my exported data was incomplete. The good news is that it provides an easy and open API, so now I have another project to tinker with. Another case is personal accounting: I tried many bookkeeping apps, but none felt good enough for long-term trust, so I plan to write one that pulls bank data and supports easy tagging. Considering data security, these tools should run locally, with cloud storage used only for backups. At minimum, we should ensure our data can be exported in structured form from commercial platforms.
 
-Hmm，最近用 Wordpress 也有点不爽了，也打算全面迁移到 Github Pages 。
+Hmm, I have also been unhappy with Wordpress lately, and I am planning a full migration to Github Pages.
 
-嗯，还好我是码农啊，这些都可以 DIY 。当然啦，做这些其实也是很贵的，毕竟，我的工资摆在那呀 😂。
+Luckily I am a programmer, so I can DIY these things. Of course, this is expensive in another way—my time costs money too 😂.
 
-免费的，才是最贵的，不能依赖商业公司。
+Free is the most expensive. Do not depend on commercial companies.

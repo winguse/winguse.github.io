@@ -1,16 +1,16 @@
 ---
-title: "区块链一点思考"
+title: "Some Thoughts on Blockchain"
 date: 2018-02-23 19:05:00 +0800
 ---
 
-今天 Tyr 给我们分享了他了解[比特币的一些心得](http://mp.weixin.qq.com/s/Znu7caKS11xdy_K2GEamjA)，虽然说，我对于中本聪最原始的[那篇 9 页的白皮书](https://bitcoin.org/bitcoin.pdf)早有阅读，不过我还是有些走马观花，一些细节并没有很好的思考，例如：
+Today Tyr shared [his takeaways on Bitcoin](http://mp.weixin.qq.com/s/Znu7caKS11xdy_K2GEamjA). Although I had already read Satoshi Nakamoto's original [9-page whitepaper](https://bitcoin.org/bitcoin.pdf), I still only skimmed parts of it and did not think through some details carefully, such as:
 
-- 为什么是 1 MB 一个 chain
-- 为什么是 21 M 的总量
-- 为什么要用 public key 的 hash 而不是本身
+- Why is one block limited to 1 MB?
+- Why is the total supply capped at 21 million?
+- Why use the hash of a public key instead of the public key itself?
 
-所以说啊，我这个人，还是要好好像 Tyr 学习，多花点心眼。
+So yes, I should learn from Tyr and think more carefully.
 
-顺带下午还去看了以太坊的材料，材料真的非常多。我在想，设计一个有远见的星球规模分布式共识系统，比特币和以太坊，都是让人惊叹的天才设计了。
+In the afternoon I also read Ethereum materials, and there is a huge amount of them. Designing a forward-looking, planet-scale distributed consensus system is astonishing; both Bitcoin and Ethereum are genius designs.
 
-但 **就目前的认知 **而言，我仍然觉得区块链目前的投资还是不理性的，它仍然是一个有大量局限性的解决方案，它不会成为一个种高频应用，或许只是目前中心化解决方案的有益补充。举个例子，也是我目前的疑问、我认为区块链的问题：随着时间推移，区块链交易数据的扩张，势必让矿工对于算力、网络、存储有非常高的要求，普通人没办法参与，这与若干寡头成为的中心化系统之间有什么区别呢？这种情况下，矿工节点是否依然忠诚、交易费用攀升、不幸运的矿工浪费的算力、无用历史数据的存储浪费又如何解决呢？我觉得，既然是**星球规模分布式共识系统**，考虑几百年，好几十代人的应用并不过分。当然，割菲菜的除外。
+But **given my current understanding**, I still think investment in blockchain is often irrational. It remains a solution with many limitations; it is unlikely to become a high-frequency mainstream application and may instead be a useful complement to centralized systems. One example, and one of my current concerns: as transaction data keeps expanding over time, miners will inevitably need massive compute power, network capacity, and storage. Ordinary people then cannot participate—so how is that fundamentally different from a centralized system controlled by a few oligopolies? In that case, how do we handle miner loyalty, rising transaction fees, wasted computation by unlucky miners, and wasted storage from useless historical data? If we call this a **planet-scale distributed consensus system**, then thinking in terms of hundreds of years and many generations is not excessive. Pump-and-dump speculation is another story.

@@ -1,19 +1,19 @@
 ---
-title: "第k数专题"
+title: "The k-th Number Topic"
 date: 2012-12-15 15:38:10 +0000
 ---
 
-## 问题描述
+## Problem description
 
-给定很多个数，找出由小到大的第 k 个数。
+Given many numbers, find the k-th smallest one.
 
-第 k 数，本来是因为一道微软的面试题而想到的，主要希望大一的同学好好理解快排，自己手动实现一些而准备的。不过[STL 的快排写得实在是太快](http://www.cnblogs.com/imAkaka/articles/2407877.html)了，太难卡住了，所以此题作为今天 12 级的练习题，太费劲了。而且，卡常数什么的，实在不厚道也很恶心。
+I originally prepared this k-th-number problem because of a Microsoft interview question, mainly hoping first-year students would better understand quicksort by implementing it manually. But [STL sorting is extremely fast](http://www.cnblogs.com/imAkaka/articles/2407877.html), making it hard to \"stress\" with data, so this exercise turned out too painful for today's class of 2012 students. Optimizing by constant-factor tricks is also not very elegant.
 
-## 各种姿势的解法
+## Different approaches
 
-## 标程
+## Reference solution
 
-正确的做法是，在快排的时候，每隔次都把和第 k 无关的扔掉，这样子求，基本上能够获得一个线性的做法，期望复杂度大概 O(2n)这样子。
+The correct approach is to discard the side unrelated to `k` at each quicksort partition step. This gives an essentially linear expected solution, roughly `O(2n)` in expectation.
 
 ```c++
 #include <algorithm>
@@ -72,9 +72,9 @@ int main() {
 }
 ```
 
-## STL 做法
+## STL approach
 
-表示我也是后面才知道的，比标程稍微慢些。目测应该跟标程一个算法。
+I only learned this approach later. It is slightly slower than the reference solution, but visually it should be the same underlying algorithm.
 
 ```c++
 #include <algorithm>
@@ -110,9 +110,9 @@ int main() {
 }
 ```
 
-## 基数排序
+## Radix sort
 
-基数排序是最快的排序算法，不过我自己写的那个常数比较大，这里面的实现是请 moreD 写的。用计数法写，常数较小。比前面的稍慢了些。
+Radix sort is usually the fastest sorting algorithm in this context. My own implementation had large constants; this version was written by moreD. It uses counting-style buckets with smaller constants, but is still a bit slower than the previous methods.
 
 ```c++
 #include <cstdio>
@@ -154,9 +154,9 @@ int main() {
 }
 ```
 
-## 类基数排序
+## Radix-like sorting
 
-这个是 Vici 写的，思想跟基数排序差不多，用了 2000 个桶来装部分数据，这种处理方式对于数据范围固定的很有用。当然，基数排序也是这样子的。
+This one was written by Vici. The idea is similar to radix sort: use 2000 buckets for partial partitioning. This works well when value ranges are relatively fixed. Radix sort shares that property too.
 
 ```c++
 #include <iostream>
@@ -211,13 +211,13 @@ int main() {
 }
 ```
 
-## 关于数据
+## About test data
 
-如果说，k 特别小，或者 k 特别大，那么本题的复杂度最最朴素的想法可以是 O(k*n)或者 O((n-k)*n)；如果你想到了堆的类似物，还可以是 O(lg(k)\*n)。
+If `k` is very small or very large, a naive idea gives complexity `O(k*n)` or `O((n-k)*n)`. If you use a heap-like method, it can be `O(lg(k)*n)`.
 
-所以，为了卡住大家，我数据 k 是 1kw 的 1000 附近……
+So, to make it hard, I set `k` near `1000` around `10,000,000`…
 
-考虑可能的查重算法优势，所以我做了去重处理……虽然不是很高级。
+Considering possible advantages from duplicate-handling algorithms, I also deduplicated the generated data... though not in a very advanced way.
 
 ```c++
 #include <stdio.h>

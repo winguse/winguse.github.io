@@ -3,52 +3,52 @@ title: "Open WRT / Wireguard / IPSet / Route"
 date: 2018-03-11 15:35:00 +0800
 ---
 
-刷机不提。装东西前，先 update (每次重启这个 package cache 的信息并不会保留)：
+translated text。translated text，translated text update (translated text package cache translated text)：
 
 ```shell
 $ opkg update
 ```
 
-## USB 网卡
+## USB translated text
 
-手里有一个 `TP-WN725N` 需要装个驱动：
+translated text `TP-WN725N` translated text：
 
 ```shell
 $ opkg install kmod-rtlwifi-usb kmod-rtl8192cu
 ```
 
-这个怎么找到的呢，我是通过查[这个东西的芯片](https://wikidevi.com/wiki/TP-LINK_TL-WN725N_v1)，是 `RTL8188CUS` ，然后在这个 packages 的目录下面找 `RTL*` ，看到这个比较可疑，装上然后发现就好了。
+translated text，translated text[translated text](https://wikidevi.com/wiki/TP-LINK_TL-WN725N_v1)，translated text `RTL8188CUS` ，translated text packages translated text `RTL*` ，translated text，translated text。
 
-手里还有一个 `TL-WN821N` 同样的套路，装上芯片驱动：
+translated text `TL-WN821N` translated text，translated text：
 
 ```shell
 $ opkg install opkg install kmod-ath9k-htc
 ```
 
-这个芯片还挺常见的样子，[在 OpenWRT 的 Wiki 里面也有](https://wiki.openwrt.org/doc/howto/wireless.overview)。
+translated text，[translated text OpenWRT translated text Wiki translated text](https://wiki.openwrt.org/doc/howto/wireless.overview)。
 
 ## Wireguard
 
-安装：
+translated text：
 
 ```shell
 $ opkg install wireguard
 ```
 
-创建配置文件目录（其实也不必要）：
+translated text（translated text）：
 
 ```shell
 $ mkdir /etc/wireguard
 ```
 
-创建个 Key：
+translated text Key：
 
 ```shell
 $ wg genkey
 <KEY_STD_OUTPUT>
 ```
 
-创建个配置文件，保存到 `/etc/wireguard/wg0.conf`：
+translated text，translated text `/etc/wireguard/wg0.conf`：
 
 ```shell
 [Interface]
@@ -63,9 +63,9 @@ AllowedIPs = 0.0.0.0/0
 Endpoint = 1.2.3.4:1234
 ```
 
-上文中，请替换 `<KEY_STD_OUTPUT>` 为前面生成的值，`Peer` 的配置也根据你服务器的配置，其中，为了解决路由器本身在 NAT 环境中的问题，加上 `PersistentKeepalive = 25` 可以减少重新握手的问题。
+translated text，translated text `<KEY_STD_OUTPUT>` translated text，`Peer` translated text，translated text，translated text NAT translated text，translated text `PersistentKeepalive = 25` translated text。
 
-在 `/etc/rc.local` 的 `exit 0` 之前添加（如果你想测试，或者说立刻生效，可以先跑一下）：
+translated text `/etc/rc.local` translated text `exit 0` translated text（translated text，translated text，translated text）：
 
 ```shell
 ip link add dev wg0 type wireguard
@@ -74,38 +74,38 @@ wg setconf wg0 /etc/wireguard/wg0.conf
 ip link set up dev wg0
 ```
 
-上文中， `192.168.0.2/24` 需要根据你服务器的配置有关。
+translated text， `192.168.0.2/24` translated text。
 
-这样每次启动网络就通了。
+translated text。
 
-然后，去界面上配置一下新的 interface 以及 firewall （理论上这个可以用命令行解决的，不过我懒得折腾了）：
+translated text，translated text interface translated text firewall （translated text，translated text）：
 
 ![Create wg0 interface](/images/2018-03-11-create-wg0-interface.png)
 
 ![Create Forward Rule](/images/2018-03-11-create-forward-rule.png)
 
-## 基于 DNS 的 route
+## translated text DNS translated text route
 
-基本思路是这样的：
+translated text：
 
-1. `dnsmasq` 配合 `ipset`，创建一个需要路由的集合
-2. `iptables` 对 `ipset` 里面的那个集合打标识（`fwmark`)
-3. `ip route` 根据标识进行路由
+1. `dnsmasq` translated text `ipset`，translated text
+2. `iptables` translated text `ipset` translated text（`fwmark`)
+3. `ip route` translated text
 
-首先，装一下完整版的 dnsmasq 和 ipset：
+translated text，translated text dnsmasq translated text ipset：
 
 ```shell
 $ opkg install dnsmasq-full --force-overwrite
 $ opkg install ipset iptables-mod-nat-extra
 ```
 
-创建一个新的路由表，编辑 `/etc/iproute2/rt_tables` 添加一行：
+translated text，translated text `/etc/iproute2/rt_tables` translated text：
 
 ```
 200 freetable
 ```
 
-在 `/etc/rc.local` 的 `exit 0` 之前添加：
+translated text `/etc/rc.local` translated text `exit 0` translated text：
 
 ```shell
 ipset -N freeset iphash # new a ip set named freeset
@@ -120,36 +120,36 @@ ip rule add fwmark 1 table freetable
 ip route add 8.8.8.0/24 via 192.168.0.1 dev wg0
 ```
 
-最后加上的是 DNS 的地址路由，因为众所周知的原因，这是必须的。
+translated text DNS translated text，translated text，translated text。
 
-配置 dnsmasq ，让 DNS 解析的时候写入对应 ipset 。习惯性的，还是分开配置文件比较好，所以，先改一下 `/etc/dnsmasq.conf`，最后面加上一行：
+translated text dnsmasq ，translated text DNS translated text ipset 。translated text，translated text，translated text，translated text `/etc/dnsmasq.conf`，translated text：
 
 ```
 conf-dir=/etc/dnsmasq.d
 ```
 
-创建这个目录：
+translated text：
 
 ```
 $ mkdir /etc/dnsmasq.d
 ```
 
-创建一个专门为 ipset 准备的配置文件，例如 `/etc/dnsmasq.d/freeset.conf` ：
+translated text ipset translated text，translated text `/etc/dnsmasq.d/freeset.conf` ：
 
 ```
 server=/.google.com/8.8.8.8 # use 8.8.8.8 for google.com resolve
 ipset=/.google.com/freeset # add all resoved results to ipset freeset
 ```
 
-两行一组，尽情添加你所爱。重启，应该就好了。
+translated text，translated text。translated text，translated text。
 
 ---
 
-更新：
+translated text：
 
-考虑到多节点自动分流的问题，测试发现可以使用 `mwan` 这个包，同时，这个包还带 Web UI。
+translated text，translated text `mwan` translated text，translated text，translated text Web UI。
 
-功能上，上文 `iptables` 后面的部分可以省略（值保留 `ipset`）。界面中 `/cgi-bin/luci/admin/network/mwan/advanced/mwanconfig` 这个路径的一个配置可以长成这样：
+translated text，translated text `iptables` translated text（translated text `ipset`）。translated text `/cgi-bin/luci/admin/network/mwan/advanced/mwanconfig` translated text：
 
 ```
 config rule 'freeset'
@@ -212,6 +212,6 @@ config interface 'wg1'
 
 ```
 
-值得一提的是，貌似是不完整 2 层实现，所以 Wireguard 不能指定 ping 的端口，所以 `ping -I wg0 192.168.0.1` 类似的命令总是挂的。所以，不能使用自动发现比较可惜。不过上面这个配置，在一个节点挂了，blance 策略貌似还是可以工作的。
+translated text，translated text 2 translated text，translated text Wireguard translated text ping translated text，translated text `ping -I wg0 192.168.0.1` translated text。translated text，translated text。translated text，translated text，blance translated text。
 
-2017-03-13 Update: 仔细研读文档后，发现还是可以做到的，在 `/usr/sbin/mwan3track` 这个脚本里头，将 `ping` 的 `-I $2` 去掉就好了。不过这里使用是个特例，因为是只能用于检查网关，毕竟如果是公网的地址你不指定出口的就不能知道是不是有效了。或许还可以改得更智能些。
+2017-03-13 Update: translated text，translated text，translated text `/usr/sbin/mwan3track` translated text，translated text `ping` translated text `-I $2` translated text。translated text，translated text，translated text。translated text。

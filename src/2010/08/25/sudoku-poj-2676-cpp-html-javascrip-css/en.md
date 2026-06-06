@@ -1,21 +1,21 @@
 ---
-title: "我和数独——从POJ2676说起"
+title: "Translated English Version"
 date: 2010-08-25 09:04:44 +0000
 ---
 
-## 初识数独
+## translated text
 
-认识数独纯属偶然，03 年，也就是我刚刚读初中的时候，我在《广州日报》上看到了数独的游戏，于是便研究起来，但是，很不幸，由于我不懂窍门，除了个别比较简单的之外，我几乎没有任何耐性去求解一些数独。
+translated text，03 translated text，translated text，translated text《translated text》translated text，translated text，translated text，translated text，translated text，translated text，translated text。
 
-后来，数独渐渐流行起来，越来越多的人开始认识数独，我也在使用电脑的过程中，发现了一些数独的游戏，于是，我也开始有意识的去了解数独的来由，但是由于我是个没什么耐性的人，所以，我也较少花大量的时间去解数独的难题。
+translated text，translated text，translated text，translated text，translated text，translated text，translated text，translated text，translated text，translated text。
 
-## 再识数独
+## translated text
 
-不久前，ACM 学习深度优先搜索的时候，遇到了一个求解数独的问题，我又重新开始研究数独，用机器解题。一开始，由于并不熟悉深搜的原理，我连一点思路也没有——怎么能搜索呢？后来，学长指导下，完成了数独的深搜程序。
+translated text，ACM translated text，translated text，translated text，translated text。translated text，translated text，translated text——translated text？translated text，translated text，translated text。
 
-## C++的数独解题程序
+## C++translated text
 
-这里的是 POJ2676 上面的题目，这个是我的 C++代码。通过这个程序，可以很好的学习到深度搜索的精要，这里用典型的递归对数独的每一个单元格进行搜索，通过 3 个，27 组布尔数组判断填表是否正确。
+translated text POJ2676 translated text，translated text C++translated text。translated text，translated text，translated text，translated text 3 translated text，27 translated text。
 
 ```c++
 #include <stdlib.h>
@@ -105,19 +105,19 @@ int main(){
 }
 ```
 
-## C++改写为 JavaScript
+## C++translated text JavaScript
 
-怎么说，交完题，并且 AC 之后，我不甘于这样一个有点实用性的程序，就这样完了。但我对于可视化编程并不熟悉，网页设计还行，所以我将它改造为 Javascript，并且嵌套到网页中，也就是这个网站机器解题的部分。
+translated text，translated text，translated text AC translated text，translated text，translated text。translated text，translated text，translated text Javascript，translated text，translated text。
 
-下面，就是 JavaScript 的代码，由我的 C++改写而成的。
+translated text，translated text JavaScript translated text，translated text C++translated text。
 
-C++改写为 JavaScript 怎么说，交完题，并且 AC 之后，我不甘于这样一个有点实用性的程序，就这样完了。但我对于可视化编程并不熟悉，网页设计还行，所以我将它改造为 Javascript，并且嵌套到网页中，也就是这个网站机器解题的部分。
+C++translated text JavaScript translated text，translated text，translated text AC translated text，translated text，translated text。translated text，translated text，translated text Javascript，translated text，translated text。
 
-下面，就是 JavaScript 的代码，由我的 C++改写而成的。
+translated text，translated text JavaScript translated text，translated text C++translated text。
 
 ```javascript
 /*
-日期：2010-8-25
+translated text：2010-8-25
 */
 function $(id) {
   return document.getElementById(id);
@@ -128,7 +128,7 @@ function showerr(msg) {
   $("msg").innerHTML = "" + msg + "";
 }
 
-/*bx,by,bxy分别是列，行，子九宫格的数字重复状态保存数组*/
+/*bx,by,bxytranslated text，translated text，translated text*/
 var i,
   j,
   bx = new Array(10),
@@ -136,7 +136,7 @@ var i,
   bxy = new Array(4),
   sd = new Array(10);
 
-/*JavaScript多维数组定义，麻烦啊*/
+/*JavaScripttranslated text，translated text*/
 for (i = 0; i < 4; i++) {
   bxy[i] = new Array(4);
   for (j = 0; j < 4; j++) {
@@ -149,43 +149,43 @@ for (j = 0; j < 10; j++) {
   sd[j] = new Array(10);
 }
 
-/*深搜解题*/
+/*translated text*/
 function slove(x, y) {
   var i, xx, yy, bxyx, bxyy;
   if (sd[x][y] == 0) {
     for (i = 1; i <= 9; i++) {
-      /*逐个试验能不能填进去*/
-      bxyx = parseInt((x + 2) / 3); /*数组下表，需要取整*/
+      /*translated text*/
+      bxyx = parseInt((x + 2) / 3); /*translated text，translated text*/
       bxyy = parseInt((y + 2) / 3);
       if (bx[x][i] && by[y][i] && bxy[bxyx][bxyy][i]) {
-        /*标记填数字后的状态*/
+        /*translated text*/
         bx[x][i] = false;
         by[y][i] = false;
         bxy[bxyx][bxyy][i] = false;
         sd[x][y] = i;
-        /*检查填表情况，决定下一步怎么做*/
+        /*translated text，translated text*/
         if (x == 9) {
           if (y == 9) {
-            /*全部填满了这里可以输出结果，
-            如果需要更多结果，输出后，不要返回为真即可，如果无解，
-            不会执行到这的，同时，由于状态还原，会以原来的输入作为输出*/
+            /*translated text，
+            translated text，translated text，translated text，translated text，
+            translated text，translated text，translated text，translated text*/
             return true;
           } else {
-            /*虽然一行填满了，但是还有一些行没填，移到后面的行*/
+            /*translated text，translated text，translated text*/
             xx = 1;
             yy = y + 1;
           }
         } else {
-          /*这一行也没填完，继续这一行的下一个格*/
+          /*translated text，translated text*/
           xx = x + 1;
           yy = y;
         }
-        /*继续搜索*/
+        /*translated text*/
         if (slove(xx, yy)) {
-          /*递归结束标志*/
+          /*translated text*/
           return true;
         }
-        /*状态还原*/
+        /*translated text*/
         sd[x][y] = 0;
         bx[x][i] = true;
         by[y][i] = true;
@@ -194,7 +194,7 @@ function slove(x, y) {
     }
   } else {
     if (x == 9) {
-      /*注释同上*/
+      /*translated text*/
       if (y == 9) {
         return true;
       } else {
@@ -210,10 +210,10 @@ function slove(x, y) {
   return false;
 }
 
-/*读取数据，调用函数解题*/
+/*translated text，translated text*/
 $("slove").onclick = function () {
   var i, j, k, tmp, bxyx, bxyy;
-  /*重复状态初始化*/
+  /*translated text*/
   for (i = 0; i < 4; i++) {
     for (j = 0; j < 4; j++) {
       for (k = 0; k < 10; k++) {
@@ -230,65 +230,65 @@ $("slove").onclick = function () {
   }
   for (i = 1; i <= 9; i++) {
     for (j = 1; j <= 9; j++) {
-      /*读取数据*/
+      /*translated text*/
       $("cell" + i + j).innerHTML = $("cell" + i + j).innerHTML.replace(
         /<.+?>|[^0-9]+/,
         ""
       );
-      /*删除html标记以及非数字，这个是正则表达式*/
+      /*translated texthtmltranslated text，translated text*/
       tmp = $("cell" + i + j).innerHTML;
       if (tmp == "" || tmp == "0") {
-        /*不处理的，认为就是空的标记*/
+        /*translated text，translated text*/
         continue;
       }
       tmp = parseInt(tmp);
       if (isNaN(tmp)) {
-        /*不是数字*/
-        showerr("第" + j + "行，第" + i + "列 非法字符！");
+        /*translated text*/
+        showerr("translated text" + j + "translated text，translated text" + i + "translated text translated text！");
         $("cell" + i + j).focus();
         return;
       }
       if (tmp <= 9 && tmp > 0) {
-        /*合法输入*/
+        /*translated text*/
         bxyx = parseInt((i + 2) / 3);
         bxyy = parseInt((j + 2) / 3);
         if (bx[i][tmp] && by[j][tmp] && bxy[bxyx][bxyy][tmp]) {
-          /*没有找到冲突*/
-          /*所在冲突区域不能填这个数了*/
+          /*translated text*/
+          /*translated text*/
           bx[i][tmp] = false;
           by[j][tmp] = false;
           bxy[bxyx][bxyy][tmp] = false;
-          sd[i][j] = tmp; /*储存数独表*/
+          sd[i][j] = tmp; /*translated text*/
         } else {
-          /*冲突*/
+          /*translated text*/
           showerr(
-            "第" + j + "行，第" + i + "列 值有问题，不合法的输入，重复了！"
+            "translated text" + j + "translated text，translated text" + i + "translated text translated text，translated text，translated text！"
           );
           $("cell" + i + j).focus();
           return;
         }
       } else if (tmp != 0) {
-        /*数字范围有问题*/
-        showerr("第" + j + "行，第" + i + "列 非法数字！");
+        /*translated text*/
+        showerr("translated text" + j + "translated text，translated text" + i + "translated text translated text！");
         $("cell" + i + j).focus();
         return;
       }
     }
   }
   if (slove(1, 1)) {
-    /*调用解题函数*/
-    /*输出*/
+    /*translated text*/
+    /*translated text*/
     for (i = 1; i <= 9; i++) {
       for (j = 1; j <= 9; j++) {
         $("cell" + i + j).innerHTML = sd[i][j];
       }
     }
   } else {
-    showerr("真遗憾，这个数独没有解～");
+    showerr("translated text，translated text～");
   }
 };
 
-/*重置表格*/
+/*translated text*/
 $("reset").onclick = function () {
   for (i = 1; i <= 9; i++) {
     for (j = 1; j <= 9; j++) {
@@ -300,24 +300,24 @@ $("reset").onclick = function () {
 $("sudoku").onkeypress = function (ev) {
   var code, bshift;
   if (ev == null) {
-    /*只有firefox才有参数传进来，
-  当然，实践证明google chrome既有参数传入，
-  也有event对象*/
+    /*translated textfirefoxtranslated text，
+  translated text，translated textgoogle chrometranslated text，
+  translated texteventtranslated text*/
     bshift = event.shiftKey;
     code = event.keyCode;
   } else {
-    code = ev.which; /*Firefox没有keyCode这个属性，取而代之的是which*/
+    code = ev.which; /*Firefoxtranslated textkeyCodetranslated text，translated textwhich*/
     bshift = ev.shiftKey;
   }
   return !bshift && code > 47 && code < 58;
 };
 ```
 
-改写为 Javascript，虽然说有超过 50%的代码都不需要写，但是由于 Javascript 变量的特殊性，很多地方需要特殊处理一下，特别是数组，字符串。不过，还算轻松的。
+translated text Javascript，translated text 50%translated text，translated text Javascript translated text，translated text，translated text，translated text。translated text，translated text。
 
-## DIV+CSS 布局
+## DIV+CSS translated text
 
-故事还没有完呢~写完了 Javascript，但是还需要有容器将结果装起来啊，所以，我还需要写一个网页，代码嘛，如下：
+translated text~translated text Javascript，translated text，translated text，translated text，translated text，translated text：
 
 ```html run=false
 <div id="sudoku">
@@ -423,7 +423,7 @@ $("sudoku").onkeypress = function (ev) {
 </div>
 ```
 
-CSS 样式：
+CSS translated text：
 
 ```css
 #sudoku {
@@ -458,4 +458,4 @@ CSS 样式：
 }
 ```
 
-好了，就这么多，如果你喜欢，自己组装一下，就可以玩数独的游戏啦~
+translated text，translated text，translated text，translated text，translated text~

@@ -1,48 +1,48 @@
 ---
-title: "高维世界对低维平面的投影"
+title: "Projection from High Dimensions to Low Dimensions"
 date: 2017-02-26 19:27:00 +0800
 ---
 
-## 视觉
+## Vision
 
-前段时间读了[https://zhuanlan.zhihu.com/p/24214731](https://zhuanlan.zhihu.com/p/24214731)，对于人类视觉突然有种豁然开朗的感觉。类似的，以前还读过[https://www.byvoid.com/zht/blog/high-dimensional-world-and-unified-value](https://www.byvoid.com/zht/blog/high-dimensional-world-and-unified-value)。其实，认知，都是把原来的一个高维向量，投影到某一个低维平面而已。
+Some time ago I read [this article](https://zhuanlan.zhihu.com/p/24214731), and it suddenly made human vision feel much clearer to me. I had also read a related piece earlier: [https://www.byvoid.com/zht/blog/high-dimensional-world-and-unified-value](https://www.byvoid.com/zht/blog/high-dimensional-world-and-unified-value). In a sense, cognition is just projecting an original high-dimensional vector onto some lower-dimensional plane.
 
-所谓人的视觉，实际上就是对物体反射的电磁波中的某一个波段的三维认知。以前我曾经很困惑：为啥同样为电磁波，为啥手机信号可以在一个穿透一快木板，而我们看的光线却不可以。其实，现在反过来想，对于手机信号的那个频段，所谓的木板就好比我们平日用的透镜一样而已。
+What we call vision is actually 3D cognition of a specific electromagnetic-wave band reflected by objects. I used to be confused: why can mobile signals (also electromagnetic waves) pass through a wooden board while visible light often cannot? Thinking in reverse now, for the mobile-signal frequency band, a wooden board may behave somewhat like a lens does in our visual band.
 
-顺便去翻阅了一些色盲的资料，其实那些色盲的人们，只是某一种视觉细胞缺失或者跟我们不一样而已，导致他们看到的东西跟我们就不一样。再去翻，又发现了四色视觉的存在：在四色视觉的人眼中，我们画的东西或许他们看来就是杂乱无章的内容，因为他们可以在我们认为的一种颜色种，看出多很多种着色。
+I also looked up color blindness materials. Many color-blind people simply lack or differ in certain visual cells, so they perceive colors differently from us. Then I discovered tetrachromacy: for people with four-color vision, what we draw may look messy, because within what we call a single color, they can distinguish many more shades.
 
-## 人工智能
+## Artificial Intelligence
 
-2016 年，很多人都将它定义维人工智能元年。罗辑思维在 2017 年的一个跨年演讲更是把它作为了很大一块进行演讲。然而，我多少会有觉得这个是一种泡沫现象，罗胖的论点，很多都是基于一个文科生对理工科很粗浅的认识去下的结论或者推论。
+Many people called 2016 the first year of AI. In a 2017 New Year speech, Luo Ji Si Wei also gave AI a major section. But I often feel some of this is bubble-like hype; many arguments sounded like broad conclusions drawn from shallow cross-disciplinary understanding.
 
-我有时候会觉得，人工智能，是能够把人类的一部分技能取代的，但不是全部，也不（太）可能是全部。简单说，那些重复性、机械性是绝对会被替代的，它们都是一下低维的工作；然而，那些创造性的活动，就很难被替代，维度太高并不是目前的计算机技术可以搞定的。
+Sometimes I think AI can replace part of human skills, but not all, and probably not most of the truly creative part. Repetitive and mechanical work will absolutely be replaced—those are lower-dimensional tasks. Creative activity is much harder to replace; the dimensionality is too high for current computer technology.
 
-围棋 AlphaGo 横空出世，吊打各路棋手。然而，我也只是将这种人工智能归类为，可以匹及的低维问题。围棋，说到底，只是一个规模为 `2^361` 的问题而已。虽然这个数字其实挺大的，但是比起我们一些创造性的工作，它的维度却显得很少，比如我们随便一个软件工程的作品，所有的 `if` 、 `else` 分支，肯定不会是那么简单的 361 个维度可以描述的。更何况，从围棋的胜负求解问题的本质而言，无论是人还是计算机，目前都还只是一个近似求解的问题而已。彼此都是将围棋降维（用人类点的说法就是，算了对方可能走的多少步），只是计算机降维完的维度比人类能够接受的要大多了而已。所以围棋这个单一领域上计算机战胜了人类，我们不能见风就是雨。
+AlphaGo shocked the world and defeated top Go players. But I still classify this as a solvable low-dimensional domain. Go, in essence, is a problem with state scale around `2^361`. That number is huge, but compared with many creative tasks, its effective dimensional structure is still constrained. For example, in software engineering, the combinational space from all `if`/`else` branches is not meaningfully captured by a simplistic "361 dimensions" analogy. Also, from the nature of solving Go outcomes, both humans and machines currently do approximate solving. Both sides reduce dimensionality (humans call this looking ahead several plausible moves); machines just reduce from a far larger workable dimension. So machine victory over humans in one domain should not lead to sweeping conclusions.
 
-我这里并不是要把人工智能贬低的意思。有时候，机器在这方面可以给人类很多启示的，甚至从本质上，改变人类的认知。我们必须承认，我们祖祖辈辈的认知，都是有其局限性的。人类的进化，是一个很随机的过程，我们只是被选择了才成为了现在这样，而且，我们并没有多少能力控制自己族群的演进。我们能控制的只是我们尽可能跟优秀的异性交配，（笑）（大误）。相反，机器的进化，在人的干预和控制下，却朝着一个更加稳定且更倾向正确的路线前进着。例如围棋，可能借助机器求解，因为机器进行了更深刻的计算（它的计算维度比人类高），会推翻我们对很多棋谱的认知。
+I am not trying to belittle AI. Machines can provide major inspiration and may even reshape human cognition at a deep level. We must admit our inherited cognition is limited. Human evolution is highly stochastic; we became what we are through selection, and we have limited control over species-level evolution (jokingly: we mostly control trying to reproduce with excellent partners). In contrast, machine "evolution" under human intervention can move along more stable and optimization-oriented directions. In Go, deeper machine computation (higher effective working dimension than humans) may overturn many traditional game understandings.
 
-人工智能有些事情，的确是会比人类做得更好的。我觉得，例如诊疗，将人类医学的很多只是给人工智能，我相信未来，计算机会作出比很多医生好的诊疗判断。为什么呢？因为目前的诊疗，其实都是某种意义上的重复劳动，一种经验性工作，机器无论在度量准确性，历史数据的统计能力，记忆能力都要比人类好太多了。当然，机器也是会有 bug 的，所以在它们不完善前，人类医生还是不可或缺的。
+There are tasks AI can indeed do better than humans. For example, diagnosis and treatment support: if enough medical knowledge is given to AI, future systems may outperform many doctors in diagnostic judgment. Why? Much of current diagnosis is repetitive, empirical pattern work. Machines are much better at measurement consistency, historical data aggregation, and memory. Of course machines have bugs too, so human doctors remain indispensable until systems become more robust.
 
-再有的，就是例如写作，我会认为，如果单纯是写一点戏剧性的内容，机器会很快取代人类的。因为在我眼中，那种拼凑类似情节，肥皂性质的剧情，实际上，都是维度很低的工作。这样的工作，显然机器会比人更好。
+Another area is writing. I think if the task is only producing dramatic, formulaic content, machines may replace humans quickly. In my view, stitching soap-opera-like plots is relatively low-dimensional work, where machines can excel.
 
-身在计算机软件行业，我也听到了很多关于哪天机器代替人类写代码的讨论。然而，我更多是觉得，这样的认知有点太浅薄了。假定哪天机器可以替代人类写代码了，然后人类描述了需求，机器就可以实现出对应的程序了。这个时候，恐怕更多的是让人类掌握了另外一种告诉机器“这时候应该做什么”的交互吧。或许那时候，只能说，那时候人类变得可以更容易写代码了，而不是不需要人去写代码了。最理想的，就是你用自然语言说，机器就懂了，然而这个问题的维度，我觉得并不是目前的机器可以接受的。而最后出来的作品，也不是人类可以接受的。
+As someone in software engineering, I hear frequent discussion about machines replacing programmers. I think that view is often shallow. Suppose one day machines can "write code" from human requirements. That likely means humans have gained a new interaction layer to tell machines what to do, rather than eliminating human coding work entirely. In an ideal case, natural language would be enough—but I believe the dimensionality of that problem is still beyond current machine acceptance, and the final outputs would often not be acceptable to humans either.
 
-进一步讨论这个问题，我会觉得，在目前的计算机科学背景下，人工智能的能力是有天花板的。目前这一波人工智能热的终极成果，会取决于硅片的计算极限；或者换个说法，哪个公司最后取得多大的成果，取决于它拥有多少计算能力。撇开人工智能本身的技术发展（假定人工智能的算法已经十分精妙了），其实，我们这一个多世纪一来的计算机体系结构（冯诺依曼计算机）决定了它可以解决问题的维度是有限的。大家都在讨论神经网络，深度神经网络，卷积神经网络，然而这种用二进制硅基去模拟真实的碳基生物神经的事情，注定是会停留在某一个有限的维度上的。具体能差了多少维度我并没有一个准确的数字，因为我也只是在表述我的感觉，而我的感觉，那是一个非常大的差距，好几个数量级。而重点是，随着问题维度的增加，复杂性的增长是指数而不是线性的。我想，这个对于计算机科班出生的人是深有体会的。我会觉得这是一个 NP 完全问题，你可以近似求解，然而当维度大到一定程度，近似求解也是没什么用的。或许，哪天计算机会先破解了我们信息安全的基石 RSA 算法，然后才轮到去替代人类写代码吧（码农的迷之炫耀）。
+If we push this further, I think AI under current computer-science foundations has a ceiling. The ultimate outcome of this AI wave depends on silicon compute limits; put differently, each company's final achievement depends heavily on owned compute capacity. Even if we assume AI algorithms become very elegant, our century-old von Neumann architecture still bounds solvable effective dimensionality. People discuss neural networks, deep networks, and CNNs, but using binary silicon-based systems to simulate real carbon-based neural systems will eventually hit finite-dimensional limits. I cannot give a precise dimension gap—it is just my intuition—but I feel it is very large, by orders of magnitude. The key point: as problem dimensionality rises, complexity grows exponentially, not linearly. Anyone with CS training feels this deeply. I see this like NP-complete behavior: approximation works, but beyond some dimension threshold, approximation may lose practical value. Maybe computers will crack RSA (the foundation of modern security) before they truly replace humans in software creation.
 
-当然啦，我会认为，即使是这样的发展下去，目前的人工智能，还是会给人类带来很多好东西的。毕竟，这种模拟的结果，比起人类自身对某问题的认知维度要高一些。目前的硅基计算机还有很多空间供人类去压榨的。
+Still, even with these constraints, current AI can bring many good things. Simulated cognition can still exceed human cognition in some domains, and silicon computing still has substantial optimization space left.
 
-只是，如果我们期待人工智能能够真的超越人类，我还是觉得，那是有可能的。但是绝对不是目前人类的科技水平可以达到的。或许需要我们计算机领域有一个从本质上不同的革新。或许量子计算机，生物计算机；或许他们都不是，或许我们还需要等待物理上的某个突破（我其实会认为化学和生物都只是物理的子学科），引发下一次技术革命。这注定应该不是一个很近的事情。我呢，也希望我可以活得那么长久呀。
+If we expect AI to truly surpass humans, I think it is possible in principle—but not with current human technology. We likely need a fundamentally different breakthrough in computing: maybe quantum computing, maybe biological computing, maybe something else entirely, perhaps triggered by a deeper physics breakthrough (I personally see chemistry and biology as subdomains grounded in physics). That kind of revolution is probably not near-term. I hope I live long enough to witness it.
 
-那按照目前的势头，作为一个个人，应该有怎样的研判呢？我会觉得，每个人都应该清醒地认识到，只有那些具有创造性的工作才不会被社会淘汰，每个人都必须随时随地学习和提升自己。我觉得大多数人，都知道这个观点，我也就不展开。这种道理，不是因为人工智能出现而带来的，社会的任何阶段都是类似的，人工智能只是让大家发现这个道理变得更加深刻了。然而我也会觉得，对于哪些工作是有创造性的，并不是所有人都会有正确认识的。比如像会计，收银，各种柜台服务就很容易被完全替代；比如建筑设计就可能被大部分替代……当然，我只是随便想想而已啦。毕竟我对某个行业，并没有一个完整的认知，我可能错误地认为它们的维度很低。而且，有些并不是人工智能就可以搞定的，你可能需要很多其他学科的支持，例如机械，动力。你看不是最近十多年一直困扰机器的都是电池续航的问题么。
+Given current trends, what should individuals do? My view: everyone should clearly recognize that only genuinely creative work has stronger long-term resistance to replacement, and everyone must keep learning and improving. Most people already know this, so I will not over-expand. This truth is not caused by AI alone; it has always been true across social phases, and AI only makes it more visible. But many people still misjudge what counts as creative work. For example, accounting, cashier work, and many counter services are relatively easy to automate; some large parts of architectural design may also be heavily automated... though these are only rough thoughts. I do not claim complete industry knowledge, and I may wrongly underestimate dimensionality in some fields. Also, some replacements require not just AI but support from mechanics, power systems, and many other disciplines. Even in robotics, battery endurance has been a bottleneck for over a decade.
 
-## 其他一些随想
+## Other random thoughts
 
-在知乎上，我关注了这个问题：[https://www.zhihu.com/question/31637520](https://www.zhihu.com/question/31637520)。有时候，我觉得，当人的认知变深刻了以后，太容易看透一些事情，也不是什么好事情。或许，简单说，那个叫挑剔，又或者说，你懂得了更多去做一个选择，知道什么是不适合你的。每个人的认知差异，太大了。认识一个人，你需要了解一个人太多的方面了，这也是一个很累的过程。
+On Zhihu, I followed this question: [https://www.zhihu.com/question/31637520](https://www.zhihu.com/question/31637520). Sometimes I feel that deeper cognition makes it too easy to see through certain things, which is not always good. Maybe that becomes "being too picky," or maybe it means you know better how to choose what fits you. Cognitive differences between people can be huge. To truly know someone, you need to understand too many dimensions of them, and that is exhausting.
 
-有时候，我也会觉得，这种叫理性的高涨，感性的缺失：理性的高涨会让人失掉感性的本心。
+Sometimes I also feel this as "rational overflow, emotional deficit": excessive rationality can make people lose their emotional core.
 
-## 最后
+## Final words
 
-闲着没事，整理了最近自己在走路的时候想的一些东西，思维比较跳，凑凑字数更新一下博客吧。谢谢你耐心且隐忍地读完。
+I had some free time and organized thoughts I have had recently while walking. The ideas jump around, so this is partly just a blog update. Thank you for reading patiently.
 
-以上。
+That is all.

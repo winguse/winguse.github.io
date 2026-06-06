@@ -1,17 +1,17 @@
 ---
-title: "CMD命令帮助生成"
+title: "Translated English Version"
 date: 2011-10-20 03:42:32 +0000
 ---
 
-软件工程老师要我们熟悉 Shell 命令，要我们写一下那些开关什么的。
+translated text Shell translated text，translated text。
 
-其实我不是很乐意，毕竟这些事情，就查查手册，好好用一下就好，写下来，太多了，也起不到多少学习作用。
+translated text，translated text，translated text，translated text，translated text，translated text，translated text。
 
-我初中就开始写批处理，那些 CMD 命令那时候算是烂熟了。现在生疏了，磨叽了一下，用了 2 个多小时，凌晨，完成了这个：
+translated text，translated text CMD translated text。translated text，translated text，translated text 2 translated text，translated text，translated text：
 
 ```bat
 @echo off
-echo.处理中...
+echo.translated text...
 setlocal ENABLEDELAYEDEXPANSION ENABLEEXTENSIONS
 set "OutFile=cmd_help.html"
 call:HtmlBgn >%OutFile%
@@ -19,18 +19,18 @@ set "CmdName="
 set "CmdDesc="
 set /a CmdCnt=1
 echo.^<div id="catalogue"^> >>%OutFile%
-echo.^<p^>^<h1^>命令提示符帮助信息^</h1^>^</p^> >>%OutFile%
-echo.^<p^>^<h2^>网络基础命令^</h2^>^</p^> >>%OutFile%
-call:AddCmdList "ARP","物理地址缓存操作命令。" >>%OutFile%
-call:AddCmdList "NET","Windows下的网络应用命令，包含用户创建、远程登录等功能。" >>%OutFile%
-call:AddCmdList "NSLOOKUP","主机查询命令。" >>%OutFile%
-call:AddCmdList "NETSH","非常强大的网络配置命令" >>%OutFile%
-call:AddCmdList "PING","ping包发送命令，用于网络测试。" >>%OutFile%
-call:AddCmdList "ROUTE","本机路由表命令，用于配置路由优先顺序。" >>%OutFile%
-call:AddCmdList "TRACERT","数据包跟踪命令，用于路由线路检测。" >>%OutFile%
-echo.^<p^>^<h2^>常用命令^</h2^>^</p^> >>%OutFile%
+echo.^<p^>^<h1^>translated text^</h1^>^</p^> >>%OutFile%
+echo.^<p^>^<h2^>translated text^</h2^>^</p^> >>%OutFile%
+call:AddCmdList "ARP","translated text。" >>%OutFile%
+call:AddCmdList "NET","Windowstranslated text，translated text、translated text。" >>%OutFile%
+call:AddCmdList "NSLOOKUP","translated text。" >>%OutFile%
+call:AddCmdList "NETSH","translated text" >>%OutFile%
+call:AddCmdList "PING","pingtranslated text，translated text。" >>%OutFile%
+call:AddCmdList "ROUTE","translated text，translated text。" >>%OutFile%
+call:AddCmdList "TRACERT","translated text，translated text。" >>%OutFile%
+echo.^<p^>^<h2^>translated text^</h2^>^</p^> >>%OutFile%
 for /f "tokens=1,2* skip=1 delims= " %%i in ('help') do (
-rem help有个命令换行后只有一个空格，就让我特殊处理，你让我情何以堪，我表示这个我不干。
+rem helptranslated text，translated text，translated text，translated text。
   if "%%j%%k"=="" (
     if "%%i"=="" (
       goto ExitGetList
@@ -56,7 +56,7 @@ for /l %%i in (1,1,%CmdCnt%) do (
 echo.^</div^> >>%OutFile%
 call:HtmlEnd >>%OutFile%
 ::cls
-echo.处理完成，按任意键退出...
+echo.translated text，translated text...
 pause>nul
 
 goto :eof
@@ -88,7 +88,7 @@ goto :eof
 echo.^<^^!doctype html^>
 echo.^<html^>
 echo.^<head^>
-echo.^<title^>命令提示符帮助信息^</title^>
+echo.^<title^>translated text^</title^>
 echo.^<style^>
 echo.body{overflow-x:hidden;}
 echo.#catalogue{top:0px;position:fixed;width:350px;overflow:auto; height:100%%;background:#F7F7F7;}
@@ -104,9 +104,9 @@ echo.^</html^>
 ::goto :eof
 ```
 
-其实，真正常用的也不是很多，我随便列出那些非常常用的吧：
+translated text，translated text，translated text：
 
-网络：
+translated text：
 
 ```
 ping
@@ -114,7 +114,7 @@ nslookup
 tracert
 ```
 
-普通：
+translated text：
 
 ```
 cd

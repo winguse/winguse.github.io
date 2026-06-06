@@ -1,11 +1,11 @@
 ---
-title: "出栈数量问题（卡塔兰数）"
+title: "Stack Pop Sequence Count (Catalan Numbers)"
 date: 2010-09-11 04:28:12 +0000
 ---
 
-《数据结构》上有一个题目，问 4 节火车，进入一个岔道的出岔道的组合有多少种，我当时一看就不想做，如果有电脑在旁边，一个深搜就好了，可惜，没有，所以认认真真写了半天，才得到 14 种这个答案。
+There is a problem in *Data Structures*: for 4 train cars entering and leaving a siding, how many output orders are possible? I did not want to solve it by hand at first—if I had a computer nearby, a DFS would do it quickly. Unfortunately I did not, so I worked it out carefully and finally got 14.
 
-今天哈尔滨网赛前，无聊，研究一下，用半个小时写了一下这个深搜：
+Before today's Harbin online contest, I had some spare time and wrote this DFS in about half an hour:
 
 ```c++
 #include <stdio.h>
@@ -18,7 +18,7 @@ stack<int> st;
 
 void test(int x){
   int i;
-  if(pos==MaxN){//已经全部出去了，打印结果
+  if(pos==MaxN){//all cars have been popped, print one result
     cnt++;
     printf("%5d:",cnt);
     for(i=0;i<pos-1;i++)
@@ -26,22 +26,22 @@ void test(int x){
     printf("%3dn",res[i]);
     return;
   }
-  //对于每一个新元素入栈，我们决策一下它前面的元素什么时候出栈
+  //for each newly pushed element, decide when previous elements should pop
   if(!st.empty()){
-    //一个个测试，当前栈顶的出去了
+    //try popping the current top
     res[pos++]=st.top();
     st.pop();
-    //下一次递归再同样决策
+    //make the same decision recursively
     test(x);
-    //递归返回了，把出去的拉回来
+    //restore state after recursion
     st.push(res[--pos]);
   }
-  if(x>MaxN)return;//大于MaxN的不考虑了
-  //当前要决策的元素，可以加到栈里面了
+  if(x>MaxN)return;//ignore values larger than MaxN
+  //push current element to be decided
   st.push(x);
-  //决策下一个元素
+  //decide for next element
   test(x+1);
-  //状态还原，刚刚放进去的出来，好返回上一个数字继续找
+  //restore state for backtracking
   st.pop();
 }
 
@@ -59,7 +59,7 @@ int main(){
 }
 ```
 
-如书上题目要求的，MaxN=4 时的结果是：
+As required by the textbook problem, the output for `MaxN=4` is:
 
 ```
 4
@@ -79,15 +79,15 @@ int main(){
 14:  4  3  2  1
 ```
 
-再输出几个结果，发现出栈数目是爆炸增长的，再草稿纸上写了递推的关系，我是分 1 开始为开始元素，2 开始为开始元素，3 为开始元素……这样讨论的，分别是：f(n-1),f(n-1),f(n-2)+c(1,n-3)……反正，好复杂，我也不想去整理了，于是[把输出的前 7 项“1 2 5 14 42 132 429”Google 之](https://encrypted.google.com/search?hl=zh-CN&q=1+2+5+14+42+132+429)，发现这个数列是一个叫卡特兰的数列，看上去，应用还挺多的。在[维基百科](http://zh.wikipedia.org/zh-cn/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0)上，看到这个通项公式：
+After printing more results, I noticed the number of pop sequences grows explosively. I sketched a recurrence on paper by splitting into cases where 1 starts first, 2 starts first, 3 starts first, and so on, giving terms like `f(n-1)`, `f(n-1)`, `f(n-2)+c(1,n-3)`... very messy, and I did not want to fully organize it. So I [Googled the first 7 terms: "1 2 5 14 42 132 429"](https://encrypted.google.com/search?hl=zh-CN&q=1+2+5+14+42+132+429), and found this sequence is the Catalan numbers, which have many applications. On [Wikipedia](http://zh.wikipedia.org/zh-cn/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0), I found the closed form:
 
 ![](/images/2010-09-11-d118d8cea7b639dfd5244fcba65910cf.png)
 
-看上去就有点傻眼了，呃，我自认我不会推导出来~诶诶，数学没学好啊~
+I was a bit stunned by it. I admit I probably could not derive it myself—my math foundation is not great.
 
-引用[维基百科](http://zh.wikipedia.org/zh-cn/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0)上的：
+Quoted from [Wikipedia](http://zh.wikipedia.org/zh-cn/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0):
 
-> 前几项为 （[OEIS](http://zh.wikipedia.org/zh-cn/%E6%95%B4%E6%95%B8%E6%95%B8%E5%88%97%E7%B7%9A%E4%B8%8A%E5%A4%A7%E5%85%A8)中的数列[A000108](http://oeis.org/A000108)）:
+> The first few terms are (sequence [A000108](http://oeis.org/A000108) in [OEIS](http://zh.wikipedia.org/zh-cn/%E6%95%B4%E6%95%B8%E6%95%B8%E5%88%97%E7%B7%9A%E4%B8%8A%E5%A4%A7%E5%85%A8)):
 > 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190, 6564120420, 24466267020, 91482563640, 343059613650, 1289904147324, 4861946401452, ...
 
-哇咔咔，数据好大~
+Wow, the numbers get huge.

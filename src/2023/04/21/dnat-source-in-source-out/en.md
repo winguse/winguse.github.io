@@ -1,11 +1,11 @@
 ---
-title: "DNAT 保留客户端 IP 且源进源出"
+title: "DNAT with Client IP Preservation and Symmetric Routing"
 date: 2023-04-21 21:30:00 +0000
 ---
 
-最近搞了一个对称的宽带，所以想把一些服务挪到家里。。毕竟可信计算这种东西，还是跑自己的硬件比较好。
+I recently got a symmetric broadband connection, so I wanted to move some services back home. For trusted computing workloads, I still prefer running them on my own hardware.
 
-如果只是简单做端口映射，那么家里的服务器是看不到客户端实际的地址的，所以想搞点事情。这个事情应该也不算少见，我也鼓捣过 iptables，我其实很早就写好了服务器的 DNAT 了，就是死活调不通。
+If you only do basic port forwarding, your home server cannot see the real client IP, so I wanted to solve that properly. This is not a rare scenario. I had already written the DNAT rules long ago and had played with iptables many times, but I just could not get it to work.
 
 ```bash
 #!/bin/sh
@@ -42,9 +42,9 @@ port_map 80  40080
 
 ```
 
-上面这段写完以后，就发现一个很奇怪的事情，回程的数据包不知道为啥有给我重新发到了 wireguard 上面了。我搞不定，也没搜到结果。。最后想着这个不会是个 bug 吧，然后换了一个机器，就发现没问题了。。害我没了 2 小时。。
+After writing the script above, I hit a strange issue: return packets were somehow being sent back into WireGuard again. I could not fix it and could not find useful search results either. In the end I wondered whether it was a bug, switched to another machine, and everything worked. That cost me two hours.
 
-下面就是用了确保本地数据包能正确路由的脚本：
+Below is the script I used to ensure local packets are routed correctly:
 
 ```bash
 #!/bin/sh

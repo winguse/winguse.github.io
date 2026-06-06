@@ -1,32 +1,33 @@
 ---
-title: "小感触"
+title: "Some Reflections"
 date: 2012-02-09 12:02:45 +0000
 ---
 
-1.能源：
+1. Energy:
 
-其实我们用的能源几乎全部都是来源于太阳的。我觉得可以分成下面的几类：
+Almost all the energy we use ultimately comes from the Sun. I think we can roughly split it into these categories:
 
-1）化石能源。比如煤、石油、天然气什么的。这一类其实是地球之前的太阳能的积累，我们用了，就相当于减少了这些积累，简单说，我们现在这样的大量用这类能源，是在破坏能源供给的平衡——他们的补充和我们的消耗可以说是严重地不平衡。等这类资源消耗完了，我们的文明可能面临好多挑战，然而我们恰恰依赖这样的东西。
+1) Fossil energy: coal, oil, natural gas, and so on. This is accumulated solar energy from Earth's past. When we consume it, we reduce that reserve. In simple terms, our current large-scale use of fossil fuels breaks the supply-consumption balance—replenishment and consumption are severely mismatched. Once these resources are depleted, civilization may face major challenges, yet we currently depend on them.
 
-2）放射性能源。狭义地说，是指核能，包括裂变和还不能用的聚变，广义地说，包括地热能。一边而言，这类能源我觉得还是可以依赖的，不过真的裂变来说，废物处理一直都不是一个好解决的东西，如果从人类文明那么长远的角度思考，废物只能说抛出了地球才能算是安全。
+2) Radioactive energy: in a narrow sense, nuclear energy (fission and still-not-practical fusion); in a broader sense, geothermal can be included too. I think this category is somewhat dependable, but for fission, waste treatment has never been a cleanly solved problem. From a long-term civilization perspective, waste is only truly safe if removed from Earth.
 
-3）直接太阳能。狭义地说，可以是你用光伏电池、太阳能热水器，广义地说，包括水力发电、风力发电、燃烧薪柴（植物光合作用）等等。这个，我觉得才是我们能够依赖的能源。如果把地球独立来看，太阳就是我们几乎唯一（还有别的能源）的能量来源，化石能源是之前的积累，只有这些，才是我们实实在在的当下的财富。像当前我们的文明体系，我们使用的能源就相当于是入不敷出。所以，我觉得，我们应该重视这类直接的能源体系。
+3) Direct solar energy: narrowly, photovoltaics and solar water heaters; broadly, hydro, wind, burning biomass (photosynthesis), and so on. I think this is the energy class we can truly rely on. If we view Earth as an isolated system, the Sun is our near-primary external energy source. Fossil fuels are past savings; direct solar-derived flows are current income. Our present civilization feels like spending beyond income, so we should value these direct energy systems more.
 
-——这也让我想起一件事情，以前我选择的专业是材料专业的，就是想去做光伏电池的，可惜啦，我现在读的是计算机的师范。
-4）别的能源。比如说潮汐能，是通过天外引力的。弱弱地想，按照能量守恒，我们这么做，会不会让月球周期变慢呢？或者说，如果月球停下来了，换成能力的话，够我们小小的人类用多久呢？
+—This also reminds me: I originally chose a materials major because I wanted to work on photovoltaic cells, but ended up in computer science teacher training.
+4) Other energy sources: for example, tidal energy from extraterrestrial gravity. A naive thought: according to conservation of energy, would extracting tidal energy slow the Moon's orbital cycle? If the Moon eventually stopped (hypothetically), how long would that energy support humanity?
 
-2.关于抽像。
+2. About abstraction.
 
-最近写的程序有点多了，想的东西也多。其实对于程序开发分层次，真的从自己编码过程中有好多体验。
+I have been writing a lot of code lately, and thinking a lot as well. During development, I gained many practical insights about layering.
 
-大致上，我理解的分层，现在有这几个层次：持久化层、抽象层、业务逻辑层、表现层。通常，中间两个可以合称一个抽象层。
+Roughly, I see these layers: persistence, abstraction, business logic, and presentation. Usually the middle two can be grouped as an abstraction layer.
 
-我理解的抽象，就是将那些上层不用关心的东西掩盖，使到上层操作的时候简单。比如数据库驱动，就是对持久化层的抽象，大家用得最多的就是 SQL 语句这个东东了，你的程序如果是建立在这样一个基础之上的，底层更换了数据库，你的程序几乎不用任何修改。
+To me, abstraction means hiding details that upper layers do not need to care about, making upper-layer operations simpler. For example, a database driver abstracts the persistence layer. The most common interface is SQL. If your program is built on that abstraction, switching the underlying database often requires little to no change.
 
-又比如说，前端人员只要关系界面如何，后端的数据处理可以一点不关心，那么后端为了提升性能什么的重构代码，前端也不会受到牵连。
+Another example: frontend developers can focus on UI while ignoring backend data processing details. Then backend refactors for performance should not drag frontend into changes.
 
-但这些日子，我也吃了些苦头。比如我资历不够，自己做的几个小程序的设计没什么预见性，或者说，设计缺陷，比如说我对数据库表做了个抽线，然后我现在要修改一些字段，然后，我全部得重构。
-给我的体会是，抽象的设计是很考究的，很需要一个人的功底。
+But I have also suffered from poor abstraction recently. For example, due to limited experience, some small programs I designed lacked foresight, or had design flaws. I once built an abstraction over database tables, and later when I needed to change fields, I had to refactor everything.
 
-简单说：加油吧。
+My takeaway: abstraction design is subtle and demanding; it requires strong fundamentals.
+
+In short: keep improving.

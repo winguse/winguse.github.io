@@ -1,9 +1,9 @@
 ---
-title: "从 YubiKey 上导入 GPG public key"
+title: "Importing a GPG Public Key from YubiKey"
 date: 2023-11-18 20:30:00 +0000
 ---
 
-本文主要参考了[这篇博客](https://www.nicksherlock.com/2021/08/recovering-lost-gpg-public-keys-from-your-yubikey/)，以及[这里](https://github.com/drduh/YubiKey-Guide/tree/master)，这里是一个简单总结。
+This post mainly references [this blog post](https://www.nicksherlock.com/2021/08/recovering-lost-gpg-public-keys-from-your-yubikey/) and [this guide](https://github.com/drduh/YubiKey-Guide/tree/master). Here is a short summary.
 
 ```shell
 # reset all gpg data

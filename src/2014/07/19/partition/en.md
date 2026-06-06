@@ -1,22 +1,22 @@
 ---
-title: "数论和Partition策略"
+title: "Number Theory and Partition Strategy"
 date: 2014-07-19 06:40:49 +0000
 ---
 
-最近要 on board 一个新的 API，大概描述一下就是，有三种分组的数据：monthly, weekly 和 daily。因为查询针对连续时间区间的，同时更新也是按照时间一点点更新。我们要存半年的数据，也就是说，有 6 个月，26 周，以及 180 天的数据。所谓连续的时间区间，就是查连续 6 个月的 monthly 的数据，连续 4 个周的 weekly 数据，以及连续 14 天的 daily 数据。不过我们使用的机器是 36 台，怎么合理地分配是个问题。
+Recently we needed to onboard a new API. In short, there are three grouped datasets: monthly, weekly, and daily. Queries target continuous time ranges, and updates are also applied incrementally by time. We store half a year of data: 6 months, 26 weeks, and 180 days. \"Continuous range\" means querying consecutive monthly data (up to 6 months), consecutive weekly data (4 weeks), and consecutive daily data (14 days). We have 36 machines, so allocating data reasonably is the key problem.
 
-若按数据内部结构（例如 account id）来 partition 的话，数据更新就会很麻烦。因为你把所有时间维度的都存一个机器上了，而又要求按时间连续查，data load 的时候，要更新 clustered index ，这不是那么现实。所以，我们决定了，按照时间去 partition，对于一个 request 过来，并发到多个机器上面去查对应数据。是滴，这样子的确会有短板效应，不过看上去数据库的表现都还算稳定，所以且不考虑。
+If we partition by internal data structure (for example account id), updates become painful. You would store all time dimensions on one machine, yet need time-continuous queries; loading data would require heavy clustered-index updates, which is not practical. So we chose time-based partitioning: when a request arrives, fan out concurrently to multiple machines for corresponding slices. Yes, this introduces a short-board effect, but database performance looked stable enough, so we ignored that for now.
 
-daily 的好说 \(\frac{180}{36} = 5\)，正好整除。但是呢，monthly 和 weekly 的加起来，才 32。在考虑尽可能避免 weekly 和 monthly 的 data load 在同一个机器上面同时出现，所以呢，还是要有点策略的。monthly 的似乎没什么好计算的，因为每个月的长度都不一样，你最好就自己去模拟一下未来好几年都不发生就好了。但是 weekly 是 7 天一个周期，所以还是算一下吧。
+`daily` is easy: \(\frac{180}{36} = 5\), perfectly divisible. But `monthly + weekly` only totals 32. We wanted to avoid having weekly and monthly loads collide on the same machine as much as possible, so we needed a strategy. Monthly alignment is hard to model mathematically because month lengths vary, so simulation is more practical. Weekly data has a 7-day period, so we can compute that part.
 
-假定 weekly 的数据和 daily 的数据都是从第一天开始的周期开始 load 的。设从第 0 个机器起 load daily 的数据，第 k 个机器起 load weekly 的数据，然后第 n 周他们在同一个机器上 load，然后有：
+Assume weekly and daily loads both start from day 1 of their cycles. Let daily data start loading from machine 0, and weekly data start from machine `k`. If they collide on the same machine in week `n`, then:
 
 $$ 7n \mod 36 = n \mod 26 + k$$
-令：
+Let:
 $$ 7n = 36x + a \\ n = 26y + b$$
-其中：
+where:
 $$ a = b + k $$
-则：
+Then:
 
 $$
 \begin{aligned}
@@ -25,11 +25,11 @@ $$
 \end{aligned}
 $$
 
-由扩展欧几里得可以知道：
+From extended Euclid:
 
 $$ 36x + 26y = \gcd(36, 26) = 2$$
 
-是有解的。两边同除以 2 有：
+there is a solution. Dividing both sides by 2:
 
 $$
 \begin{aligned}
@@ -38,11 +38,11 @@ $$
 \end{aligned}
 $$
 
-要 x, y 有整数解，则 \(\frac{8n - 2b - k}{2}\) 必须为 2 的倍数。
+For integer solutions in `x, y`, \(\frac{8n - 2b - k}{2}\) must be a multiple of 2.
 
-所以，只要 k 是奇数，那么久不存在 weekly 和 daily 的 load 在同一天出现。做了个网页模拟。
+So if `k` is odd, weekly and daily loads never collide on the same day. I also made a web simulation.
 
-用扩展欧几里得：
+Using extended Euclid:
 
 ```c++
 int ext_gcd(int a, int b, int &x, int &y) {
@@ -57,11 +57,11 @@ int ext_gcd(int a, int b, int &x, int &y) {
 }
 ```
 
-求出一个解： \(x_0 = -5, y_0 = 7\)，因为原式可以写成， \( 36(x_0 + 13q) + 26(y_0 - 18q) = 2 \)，其中 q 是整数，所以通解就是
+One solution is \(x_0 = -5, y_0 = 7\). Since the original equation can be written as \( 36(x_0 + 13q) + 26(y_0 - 18q) = 2 \), where `q` is an integer, the general solution is:
 \( \begin{cases} \begin{aligned}x & = -5 + 13q \\ y & = 7 - 18q\end{aligned}\end{cases}\)
 
-这个通解是针对 \( 36x + 26y = \gcd(36, 26) = 2 \) 的，而针对我们要求的，应该是\( \begin{cases} \begin{aligned} x & = -5 \times \frac{8n - 2b - k}{2} + 13q \\ y & = 7 \times \frac{8n - 2b - k}{2} - 18q\end{aligned}\end{cases}\)
+This general solution targets \( 36x + 26y = \gcd(36, 26) = 2 \). For our actual requirement, it should be \( \begin{cases} \begin{aligned} x & = -5 \times \frac{8n - 2b - k}{2} + 13q \\ y & = 7 \times \frac{8n - 2b - k}{2} - 18q\end{aligned}\end{cases}\).
 
-我弄了一个下午，还没想明白怎么求出当 k = 10 的时候的 n。
+I spent an entire afternoon and still did not figure out how to solve `n` when `k = 10`.
 
-唉，其实老实说，数论当初就没学好，很多细节证明我这里就略过了。哪怕上上面这堆不严谨的东西，也折腾了我大半天，真心变差了。
+Honestly, I never learned number theory well, so I skipped many proof details here. Even this not-so-rigorous derivation cost me most of the day—my math skills really got rusty.
