@@ -11,6 +11,7 @@ import buildCache from "../src/.observablehq/cache/_build.json" with { type: "js
 
 const base = "https://wingu.se";
 const email = "emerald_cahoots0j@icloud.com";
+const DESCRIPTION_MAX_LENGTH = 100;
 
 const selectedPages = buildCache.pages
   .filter(({ path }) => /^\/\d{4}/.test(path))
@@ -63,9 +64,10 @@ async function addItemsToFeed(feed, pages) {
   for (const attr of ["src", "href"]) {
     $(`[${attr}]`).each((_, el) => {
       const src = $(el).attr(attr);
-      if (!src || /^(#|mailto:|tel:|javascript:)/i.test(src)) return;
+      if (!src || /^(#|mailto:|tel:)/i.test(src)) return;
       try {
         const abs = new URL(src, pageUrl);
+        if (!["http:", "https:"].includes(abs.protocol)) return;
         $(el).attr(attr, abs.toString());
       } catch {
         // ignore malformed url values
@@ -78,7 +80,7 @@ async function addItemsToFeed(feed, pages) {
       title,
       id: pageUrl,
       link: pageUrl,
-      description: `${main.text().trim().slice(0, 100)}...`,
+      description: `${main.text().trim().slice(0, DESCRIPTION_MAX_LENGTH)}...`,
       content:
         `<p><img src="https://winguse.com/view-counter?r=wingu.se${path.replace(/\.html$/, "")}&from=feed" style="vertical-align: middle; height: 1em;"/></p>` +
         main.html(),
