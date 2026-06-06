@@ -44,8 +44,8 @@ function createFeed(lang) {
 }
 
 function extractDate($, pagePath) {
-  const scriptHtml = $("small script").html();
-  const tsMatch = scriptHtml?.match(/new Date\((\d+)\)/);
+  const scriptHtml = $("small script").html() ?? "";
+  const tsMatch = scriptHtml.match(/new Date\((\d+)\)/);
   if (tsMatch) return new Date(Number(tsMatch[1]));
   const pathMatch = pagePath.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\//);
   if (pathMatch) {
