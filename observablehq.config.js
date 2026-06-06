@@ -119,6 +119,9 @@ export default {
   <link rel="alternate" type="application/json" href="https://wingu.se/feed.json" title="Yingyu Pages JSON Feed">
   <link rel="alternate" type="application/atom+xml" href="https://wingu.se/atom.xml" title="Yingyu Pages Atom Feed">
   <link rel="alternate" type="application/rss+xml" href="https://wingu.se/rss.xml" title="Yingyu Pages RSS Feed">
+  <link rel="alternate" type="application/json" href="https://wingu.se/feed-en.json" title="Yingyu Pages JSON Feed (English)">
+  <link rel="alternate" type="application/atom+xml" href="https://wingu.se/atom-en.xml" title="Yingyu Pages Atom Feed (English)">
+  <link rel="alternate" type="application/rss+xml" href="https://wingu.se/rss-en.xml" title="Yingyu Pages RSS Feed (English)">
   <script>
     window.translationMap = ${JSON.stringify(translationMap)};
     (function() {
@@ -167,7 +170,7 @@ export default {
   // Some additional configuration options and their defaults:
   // theme: "default", // try "light", "dark", "slate", etc.
   header: ({ title, path }) => {
-    const fullPath = "/" + path.replace(/\\.html$/, "");
+    const fullPath = "/" + path.replace(/^\//, "").replace(/\.html$/, "");
     let lang = "zh";
     let basePath = fullPath;
     if (fullPath.endsWith("/en")) {
@@ -198,9 +201,9 @@ export default {
 
     const ts = path2time[fullPath]?.getTime();
     const timeScript = ts
-      ? `<script>document.write(new Date(\${ts}).toLocaleString())</script>`
+      ? `<script>document.write(new Date(${ts}).toLocaleString())</script>`
       : "";
-    return `\${switcher}<h1>\${title}</h1><small>\${timeScript} <img src="https://winguse.com/view-counter?r=wingu.se\${fullPath}" style="vertical-align: middle; height: 1em;"/></small>`;
+    return `${switcher}<h1>${title}</h1><small>${timeScript} <img src="https://winguse.com/view-counter?r=wingu.se${fullPath}" style="vertical-align: middle; height: 1em;"/></small>`;
   }, // what to show in the header (HTML)
   footer: `
 <section id="isso-thread">
@@ -214,6 +217,8 @@ export default {
     ["mastodon", "winguse", "https://m.wingu.se/@winguse"],
     ["rss", "RSS", "https://wingu.se/rss.xml"],
     ["rss", "Atom", "https://wingu.se/atom.xml"],
+    ["rss", "RSS (EN)", "https://wingu.se/rss-en.xml"],
+    ["rss", "Atom (EN)", "https://wingu.se/atom-en.xml"],
   ]
     .map(
       ([icon, username, url]) => `
