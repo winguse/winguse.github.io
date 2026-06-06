@@ -18,16 +18,16 @@ import NetworkExtension
 
 class LocationTrackingManager {
     func setupHotspotHelper() {
-        // Request HotspotHelper capability
+        // 请求 HotspotHelper 能力
         NEHotspotHelper.register(options: nil, queue: DispatchQueue.main) { (command) in
             if let networkList = command.networkList {
                 for network in networkList {
-                    // Access WiFi network information (SSID, MAC address)
-                    // see: https://developer.apple.com/documentation/networkextension/nehotspotnetwork
+                    // 访问 WiFi 网络信息（SSID、MAC 地址）
+                    // 参见：https://developer.apple.com/documentation/networkextension/nehotspotnetwork
                     let ssid = network.ssid
                     let macAddress = network.bssid
 
-                    // Perform location tracking logic using ssid and macAddress
+                    // 使用 ssid 和 macAddress 执行位置跟踪逻辑
                     self.trackLocation(withSSID: ssid, andMACAddress: macAddress)
                 }
             }
@@ -35,8 +35,8 @@ class LocationTrackingManager {
     }
 
     func trackLocation(withSSID ssid: String, andMACAddress macAddress: String) {
-        // Your location tracking logic goes here
-        // Use ssid and macAddress to determine user location
+        // 你的位置跟踪逻辑在这里
+        // 使用 ssid 和 macAddress 确定用户位置
     }
 }
 ```

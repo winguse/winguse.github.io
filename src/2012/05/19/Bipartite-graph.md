@@ -114,8 +114,8 @@ int main(){
 
 ```c++
 /*
-Cover all vertices with the minimum number of edges — this is maximum edge weight coverage.
-Vertices are x, edges are between adjacent x, x are numbered as in chess.
+用最少的边覆盖所有的点，就是最大边权覆盖
+点是×，边是相邻的×之间，×按照国际象棋编号
 */
 
 #include <cstdio>
@@ -219,7 +219,7 @@ int main(){
 
 ```c++
 /*
-Maximum independent set of the complement graph, reverse thinking.
+补图的最大独立集，逆向思维
 */
 
 #include <cstdio>
@@ -281,8 +281,8 @@ int main(){
 
 ```c++
 /*
-Minimum path cover = number of vertices - number of matches.
-For all vertices that can traverse from garbage i to garbage j, connect an edge.
+最小路径覆盖=点数-匹配数
+对于所有能够从一个垃圾i走到垃圾j的点，连一个边。
 */
 
 #include <cstdio>

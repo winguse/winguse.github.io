@@ -29,9 +29,9 @@ date: 2010-08-27 14:41:45 +0000
 具体情况如下：
 
 ```
-…861893818959054203… (the value of PI)
-…       |              (vertical line marks the 32327th decimal digit)
-…861893815             (computed result)
+…861893818959054203… (PI的值)
+…       |              (竖线标记了小数点后第32327位)
+…861893815             (运算结果)
 ```
 
 其实，这个程序的效率比较低了，即使没有处理极限，算下去也没有什么意义
@@ -47,46 +47,46 @@ date: 2010-08-27 14:41:45 +0000
 
 ```c++
 #include <stdio.h>
-#define T 330/*number of iterations, max: 107382*/
+#define T 330/*迭代次数，最大：107382*/
 #define N 25
-/*length of the array for storing the decimal part, one quarter of the precision, max: 32327/4=8081.75, i.e. 8082*/
-/*experiments show that 330 iterations produce accurate results to 100 decimal places*/
+/*数组保存小数部分的长度，精度的四分之一，最大：32327/4=8081.75，也就是8082*/
+/*试验表明，迭代330次算的PI小数点后的100位已经是精确的了*/
 
 int main(){
   int PI[N+1]={0},i,j,k,t;
-  PI[0]=2;/*initialization*/
+  PI[0]=2;/*初始化*/
   for(i=T;i;i--){
   /* PI/(2*i+1) */
-    t=0;/*performing division; save the remainder here, initially 0*/
-    k=2*i+1;/*the divisor, see the PI formula*/
+    t=0;/*除法了，这里保存余数，初始当然是0*/
+    k=2*i+1;/*要除以的数，见PI的公式*/
     for(j=0;j<=N;j++){
-      PI[j]+=t*10000;/*the dividend is the remainder from the previous digit multiplied by the base, plus the current digit*/
-      t=PI[j]%k;/*save the remainder of this operation for next use*/
-      PI[j]/=k;/*result of this operation*/
+      PI[j]+=t*10000;/*被除数是上一位的余数乘以进制再加上这一位上的数*/
+      t=PI[j]%k;/*保存这次运算的余数，供下次使用*/
+      PI[j]/=k;/*这次运算的结果*/
     }
 
   /* PI*i */
-    t=0;/*save multiplication carry, initially 0*/
+    t=0;/*保存乘法进位，初始当然是0*/
     for(j=N;j>=0;j--){
-      t+=PI[j]*i;/*add the carry from last time to the product of this multiplication*/
-      //if(t<0){printf("Overflown"); return 0;}/*computation exceeded precision limit*/
-      PI[j]=t%10000;/*only save the remainder for this digit*/
-      t/=10000;/*this saves the carry*/
+      t+=PI[j]*i;/*上次的进位加上这次乘得的结果就是这次的值*/
+      //if(t<0){printf("Overflown"); return 0;}/*运算超过精度限制了*/
+      PI[j]=t%10000;/*本位只保存余数*/
+      t/=10000;/*这里就是保存进位*/
     }
     //if(t)printf("Unexpected!n");
-    /*if this holds, the integer part exceeds 10000, which is clearly an error.*/
+    /*如果成立了，也就是整数部分的结果大于10000了，明显是错误的。*/
 
   /* PI+2 */
     PI[0]+=2;
-    /*add 2; since the decimal part of integer 2 is zero, the decimal digits are not involved (obviously).*/
+    /*加上2，由于整数2小数点后面是零，所以小数点后面的不参与运算了（不是废话么？）。*/
     //printf("%d %d.",i,PI[0]);int ii;
     //for(ii=1;ii<=N;ii++)printf("%.4d",PI[ii]);
-    //printf("n");getchar(); /*observe results step by step*/
+    //printf("n");getchar(); /*一次次观察结果*/
   }
-  printf("%d.n",PI[0]);/*first element is the integer part*/
+  printf("%d.n",PI[0]);/*第一位为整数部分*/
   for(i=1;i<=N;i++){
-    printf("%.4d",PI[i]);/*%.4d formats output as 4 digits, padding with zeros for small values*/
-    if(i%5==0)printf("n");/* 4*5=20, output 20 digits per line */
+    printf("%.4d",PI[i]);/*%.4d输出结果占四位，而且，数值小要补零*/
+    if(i%5==0)printf("n");/* 4*5=20 每20位输出作一行 */
   }
   printf("n");
   //getchar();

@@ -85,7 +85,7 @@ void init(int nv, int ne) {
     dist[i] = inf;
   for (i = 0; i < ne; ++i) {
     scanf("%d%d%d", &u, &v, &c); // %d: type of cost
-    addedge(u, v, c); // vertex: 0 ~ n-1, directed edge
+    addedge(u, v, c); // vertex: 0 ~ n-1, 单向边
   }
 }
 ```
@@ -115,11 +115,11 @@ typedef struct{
   int from,to,dis;
 }E;
 int N,M,X;
-vector< vector<E> > map,map2;//map2 is the reverse of map
+vector< vector<E> > map,map2;//map2是map的逆
 queue<int> que;
 vector<bool> inQue;
-vector<int> dis,dis2;//dis2 records the shortest path in the reversed graph
-/*X is the source vertex*/
+vector<int> dis,dis2;//dis2记录逆图的最短路
+/*X为源点*/
 map.clear();
 while(!que.empty())que.pop();
 inQue.clear();
@@ -127,7 +127,7 @@ dis.clear();
 map.resize(N+1);
 inQue.resize(N+1,false);
 dis.resize(N+1,INF);
-map2.resize(N+1);//initialize map2
+map2.resize(N+1);//初始化map2
 for(i=0;i<M;i++){
   scanf("%d%d%d",&e.from,&e.to,&e.dis);
   map[e.from].push_back(e);
@@ -310,7 +310,7 @@ int main(){
           dis[map[s][i].to]=dis[s]+map[s][i].d;
           if(!inQue[map[s][i].to]){
             rank[map[s][i].to]++;
-            if(rank[map[s][i].to]>=n){//if a vertex is enqueued >= n times, a negative cycle exists.
+            if(rank[map[s][i].to]>=n){//一个点入队的次数>=n的话，那就是存在负环了。
               fg=true;
               break;
             }
