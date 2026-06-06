@@ -117,8 +117,11 @@ export default {
   <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="64x64">
   <link rel="stylesheet" type="text/css" href="style/default.css">
   <link rel="alternate" type="application/json" href="https://wingu.se/feed.json" title="Yingyu Pages JSON Feed">
+  <link rel="alternate" type="application/json" href="https://wingu.se/feed-en.json" title="Yingyu Pages JSON Feed (English)">
   <link rel="alternate" type="application/atom+xml" href="https://wingu.se/atom.xml" title="Yingyu Pages Atom Feed">
+  <link rel="alternate" type="application/atom+xml" href="https://wingu.se/atom-en.xml" title="Yingyu Pages Atom Feed (English)">
   <link rel="alternate" type="application/rss+xml" href="https://wingu.se/rss.xml" title="Yingyu Pages RSS Feed">
+  <link rel="alternate" type="application/rss+xml" href="https://wingu.se/rss-en.xml" title="Yingyu Pages RSS Feed (English)">
   <script>
     window.translationMap = ${JSON.stringify(translationMap)};
     (function() {
@@ -213,7 +216,9 @@ export default {
     ["github", "winguse", "https://github.com/winguse"],
     ["mastodon", "winguse", "https://m.wingu.se/@winguse"],
     ["rss", "RSS", "https://wingu.se/rss.xml"],
+    ["rss", "RSS (EN)", "https://wingu.se/rss-en.xml"],
     ["rss", "Atom", "https://wingu.se/atom.xml"],
+    ["rss", "Atom (EN)", "https://wingu.se/atom-en.xml"],
   ]
     .map(
       ([icon, username, url]) => `
