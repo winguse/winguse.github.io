@@ -1,6 +1,6 @@
 ---
 title: About
-date: 2024-08-04 11:39:00 -7000
+date: 2024-08-04 11:39:00 -0700
 ---
 
 <img style="max-height: 30vh" src="/images/mypic.jpg" alt="Avatar" />

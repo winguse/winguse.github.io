@@ -1,6 +1,6 @@
 ---
 title: Yingyu Pages
-date: 2024-08-04 11:39:00 -7000
+date: 2024-08-04 11:39:00 -0700
 ---
 
 Hello! You can find the list of articles on the left, although I haven't written much...
