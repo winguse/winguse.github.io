@@ -42,13 +42,13 @@ description=Add MIUI CN Features to 11 pro
 
 找对应的大陆版 MIUI，提取 `/system/app/` 对应的 App，我对在我这个手机上使用银联卡并不感兴趣，所以我觉得我并不需要恢复银联卡的功能。试了一下，如果只是要公交卡和门禁，我只需要恢复 `TSMClient` 就可以了，值得注意的是，`/system/app/TSMClient/lib/arm64` 里头是两个符号连接，也要把他们对应的文件复制好，具体地就是 `/system/lib64` 的 `libentryexpro.so`和`libuptsmaddonmi.so`两个文件。当然，因为考虑到有些软件 Google Play 上没有，我还是恢复了小米应用商店 `MiuiSuperMarket`。
 
-公交和门禁，需要将系统设置里头，NFC `安全模块设置`改成`内置安全模块`，然而，欧洲版并没有这个选项，恢复这个选项，需要修改系统的 prop。具体是，根目录新建`system.prop`，内容如下：
+公交和门禁，需要将系统设置里头，NFC `Security element settings`改成`Embedded secure element`，然而，欧洲版并没有这个选项，恢复这个选项，需要修改系统的 prop。具体是，根目录新建`system.prop`，内容如下：
 
 ```
 ro.se.type=eSE,HCE,UICC
 ```
 
-将上述文件夹里的内容打一个`zip`包，下载到手机，在 Magisk 上`从本地安装`即可。
+将上述文件夹里的内容打一个`zip`包，下载到手机，在 Magisk 上`Install from storage`即可。
 
 安装上以后，这个模块，桌面只会多一个小米应用商店。然而并不能看到门禁、公交卡的影子。我们需要给他们建一个快捷方式，这里用到 [Shortcut 这个 App](https://play.google.com/store/apps/details?id=rk.android.app.shortcutmaker)，下载后，在 Activity 里头，给小米智能卡这个 App 创建几个快捷方式即可，分别是：
 

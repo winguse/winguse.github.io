@@ -113,8 +113,8 @@ Given some points, use the minimum number of `2×1` or `1×2` tiles to cover the
 
 ```c++
 /*
-用最少的边覆盖所有的点，就是最大边权覆盖
-点是×，边是相邻的×之间，×按照国际象棋编号
+Cover all vertices with the minimum number of edges — this is maximum edge weight coverage.
+Vertices are x, edges are between adjacent x, x are numbered as in chess.
 */
 
 #include <cstdio>
@@ -217,7 +217,7 @@ Among the boys, everyone knows each other; among the girls, everyone also knows 
 
 ```c++
 /*
-补图的最大独立集，逆向思维
+Maximum independent set of the complement graph, reverse thinking.
 */
 
 #include <cstdio>
@@ -278,8 +278,8 @@ This is a trash-collecting problem: use the minimum number of paths to cover all
 
 ```c++
 /*
-最小路径覆盖=点数-匹配数
-对于所有能够从一个垃圾i走到垃圾j的点，连一个边。
+Minimum path cover = number of vertices - number of matches.
+For all vertices that can traverse from garbage i to garbage j, connect an edge.
 */
 
 #include <cstdio>

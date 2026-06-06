@@ -117,7 +117,7 @@ Below is the JavaScript code, rewritten from my C++ version.
 
 ```javascript
 /*
-日期：2010-8-25
+Date: 2010-8-25
 */
 function $(id) {
   return document.getElementById(id);
@@ -128,7 +128,7 @@ function showerr(msg) {
   $("msg").innerHTML = "" + msg + "";
 }
 
-/*bx,by,bxy分别是列，行，子九宫格的数字重复状态保存数组*/
+/*bx, by, bxy are arrays for saving the digit repetition state for columns, rows, and sub-grids, respectively*/
 var i,
   j,
   bx = new Array(10),
@@ -136,7 +136,7 @@ var i,
   bxy = new Array(4),
   sd = new Array(10);
 
-/*JavaScript多维数组定义，麻烦啊*/
+/*JavaScript multi-dimensional array definition, quite cumbersome*/
 for (i = 0; i < 4; i++) {
   bxy[i] = new Array(4);
   for (j = 0; j < 4; j++) {
@@ -149,43 +149,44 @@ for (j = 0; j < 10; j++) {
   sd[j] = new Array(10);
 }
 
-/*深搜解题*/
+/*Solve using depth-first search*/
 function slove(x, y) {
   var i, xx, yy, bxyx, bxyy;
   if (sd[x][y] == 0) {
     for (i = 1; i <= 9; i++) {
-      /*逐个试验能不能填进去*/
-      bxyx = parseInt((x + 2) / 3); /*数组下表，需要取整*/
+      /*try filling in one by one*/
+      bxyx = parseInt((x + 2) / 3); /*array index, needs to be rounded down*/
       bxyy = parseInt((y + 2) / 3);
       if (bx[x][i] && by[y][i] && bxy[bxyx][bxyy][i]) {
-        /*标记填数字后的状态*/
+        /*mark the state after filling in the digit*/
         bx[x][i] = false;
         by[y][i] = false;
         bxy[bxyx][bxyy][i] = false;
         sd[x][y] = i;
-        /*检查填表情况，决定下一步怎么做*/
+        /*check the fill status to decide the next step*/
         if (x == 9) {
           if (y == 9) {
-            /*全部填满了这里可以输出结果，
-            如果需要更多结果，输出后，不要返回为真即可，如果无解，
-            不会执行到这的，同时，由于状态还原，会以原来的输入作为输出*/
+            /*all cells are filled; results can be output here.
+            if more results are needed, simply don't return true after outputting.
+            if there is no solution, this point will never be reached;
+            and due to state restoration, the original input will be used as output*/
             return true;
           } else {
-            /*虽然一行填满了，但是还有一些行没填，移到后面的行*/
+            /*although one row is fully filled, there are still other rows; move to the next row*/
             xx = 1;
             yy = y + 1;
           }
         } else {
-          /*这一行也没填完，继续这一行的下一个格*/
+          /*this row is not yet complete, continue to the next cell in this row*/
           xx = x + 1;
           yy = y;
         }
-        /*继续搜索*/
+        /*continue searching*/
         if (slove(xx, yy)) {
-          /*递归结束标志*/
+          /*recursion end flag*/
           return true;
         }
-        /*状态还原*/
+        /*restore state*/
         sd[x][y] = 0;
         bx[x][i] = true;
         by[y][i] = true;
@@ -194,7 +195,7 @@ function slove(x, y) {
     }
   } else {
     if (x == 9) {
-      /*注释同上*/
+      /*same as above*/
       if (y == 9) {
         return true;
       } else {
@@ -210,10 +211,10 @@ function slove(x, y) {
   return false;
 }
 
-/*读取数据，调用函数解题*/
+/*read data and call the solver function*/
 $("slove").onclick = function () {
   var i, j, k, tmp, bxyx, bxyy;
-  /*重复状态初始化*/
+  /*initialize repetition state*/
   for (i = 0; i < 4; i++) {
     for (j = 0; j < 4; j++) {
       for (k = 0; k < 10; k++) {
@@ -230,65 +231,65 @@ $("slove").onclick = function () {
   }
   for (i = 1; i <= 9; i++) {
     for (j = 1; j <= 9; j++) {
-      /*读取数据*/
+      /*read data*/
       $("cell" + i + j).innerHTML = $("cell" + i + j).innerHTML.replace(
         /<.+?>|[^0-9]+/,
         ""
       );
-      /*删除html标记以及非数字，这个是正则表达式*/
+      /*remove HTML tags and non-numeric characters using regex*/
       tmp = $("cell" + i + j).innerHTML;
       if (tmp == "" || tmp == "0") {
-        /*不处理的，认为就是空的标记*/
+        /*treat as empty*/
         continue;
       }
       tmp = parseInt(tmp);
       if (isNaN(tmp)) {
-        /*不是数字*/
-        showerr("第" + j + "行，第" + i + "列 非法字符！");
+        /*not a number*/
+        showerr("Row " + j + ", Column " + i + " has an illegal character!");
         $("cell" + i + j).focus();
         return;
       }
       if (tmp <= 9 && tmp > 0) {
-        /*合法输入*/
+        /*valid input*/
         bxyx = parseInt((i + 2) / 3);
         bxyy = parseInt((j + 2) / 3);
         if (bx[i][tmp] && by[j][tmp] && bxy[bxyx][bxyy][tmp]) {
-          /*没有找到冲突*/
-          /*所在冲突区域不能填这个数了*/
+          /*no conflict found*/
+          /*the conflict area cannot have this number*/
           bx[i][tmp] = false;
           by[j][tmp] = false;
           bxy[bxyx][bxyy][tmp] = false;
-          sd[i][j] = tmp; /*储存数独表*/
+          sd[i][j] = tmp; /*store Sudoku grid*/
         } else {
-          /*冲突*/
+          /*conflict*/
           showerr(
-            "第" + j + "行，第" + i + "列 值有问题，不合法的输入，重复了！"
+            "Row " + j + ", Column " + i + " has a conflict: illegal input, duplicate value!"
           );
           $("cell" + i + j).focus();
           return;
         }
       } else if (tmp != 0) {
-        /*数字范围有问题*/
-        showerr("第" + j + "行，第" + i + "列 非法数字！");
+        /*number out of range*/
+        showerr("Row " + j + ", Column " + i + " has an illegal number!");
         $("cell" + i + j).focus();
         return;
       }
     }
   }
   if (slove(1, 1)) {
-    /*调用解题函数*/
-    /*输出*/
+    /*call the solver function*/
+    /*output*/
     for (i = 1; i <= 9; i++) {
       for (j = 1; j <= 9; j++) {
         $("cell" + i + j).innerHTML = sd[i][j];
       }
     }
   } else {
-    showerr("真遗憾，这个数独没有解～");
+    showerr("Unfortunately, this Sudoku has no solution~");
   }
 };
 
-/*重置表格*/
+/*reset grid*/
 $("reset").onclick = function () {
   for (i = 1; i <= 9; i++) {
     for (j = 1; j <= 9; j++) {
@@ -300,13 +301,13 @@ $("reset").onclick = function () {
 $("sudoku").onkeypress = function (ev) {
   var code, bshift;
   if (ev == null) {
-    /*只有firefox才有参数传进来，
-  当然，实践证明google chrome既有参数传入，
-  也有event对象*/
+    /* only Firefox passes parameters in;
+  however, in practice, Google Chrome both passes parameters
+  and has an event object*/
     bshift = event.shiftKey;
     code = event.keyCode;
   } else {
-    code = ev.which; /*Firefox没有keyCode这个属性，取而代之的是which*/
+    code = ev.which; /*Firefox doesn't have the keyCode property; which is used instead*/
     bshift = ev.shiftKey;
   }
   return !bshift && code > 47 && code < 58;

@@ -11,7 +11,7 @@ date: 2011-10-20 03:42:32 +0000
 
 ```bat
 @echo off
-echo.处理中...
+echo.Processing...
 setlocal ENABLEDELAYEDEXPANSION ENABLEEXTENSIONS
 set "OutFile=cmd_help.html"
 call:HtmlBgn >%OutFile%
@@ -19,18 +19,18 @@ set "CmdName="
 set "CmdDesc="
 set /a CmdCnt=1
 echo.^<div id="catalogue"^> >>%OutFile%
-echo.^<p^>^<h1^>命令提示符帮助信息^</h1^>^</p^> >>%OutFile%
-echo.^<p^>^<h2^>网络基础命令^</h2^>^</p^> >>%OutFile%
-call:AddCmdList "ARP","物理地址缓存操作命令。" >>%OutFile%
-call:AddCmdList "NET","Windows下的网络应用命令，包含用户创建、远程登录等功能。" >>%OutFile%
-call:AddCmdList "NSLOOKUP","主机查询命令。" >>%OutFile%
-call:AddCmdList "NETSH","非常强大的网络配置命令" >>%OutFile%
-call:AddCmdList "PING","ping包发送命令，用于网络测试。" >>%OutFile%
-call:AddCmdList "ROUTE","本机路由表命令，用于配置路由优先顺序。" >>%OutFile%
-call:AddCmdList "TRACERT","数据包跟踪命令，用于路由线路检测。" >>%OutFile%
-echo.^<p^>^<h2^>常用命令^</h2^>^</p^> >>%OutFile%
+echo.^<p^>^<h1^>Command Prompt Help Information^</h1^>^</p^> >>%OutFile%
+echo.^<p^>^<h2^>Basic Network Commands^</h2^>^</p^> >>%OutFile%
+call:AddCmdList "ARP","Physical address cache operation command." >>%OutFile%
+call:AddCmdList "NET","Network application command for Windows, including user creation, remote login, and other features." >>%OutFile%
+call:AddCmdList "NSLOOKUP","Host query command." >>%OutFile%
+call:AddCmdList "NETSH","Powerful network configuration command" >>%OutFile%
+call:AddCmdList "PING","Ping packet sending command, used for network testing." >>%OutFile%
+call:AddCmdList "ROUTE","Local routing table command, used to configure routing priority order." >>%OutFile%
+call:AddCmdList "TRACERT","Packet tracing command, used for route path detection." >>%OutFile%
+echo.^<p^>^<h2^>Common Commands^</h2^>^</p^> >>%OutFile%
 for /f "tokens=1,2* skip=1 delims= " %%i in ('help') do (
-rem help有个命令换行后只有一个空格，就让我特殊处理，你让我情何以堪，我表示这个我不干。
+rem help has a command that wraps to the next line with only one space, requiring special handling. This is beyond me, I refuse to deal with it.
   if "%%j%%k"=="" (
     if "%%i"=="" (
       goto ExitGetList
@@ -56,7 +56,7 @@ for /l %%i in (1,1,%CmdCnt%) do (
 echo.^</div^> >>%OutFile%
 call:HtmlEnd >>%OutFile%
 ::cls
-echo.处理完成，按任意键退出...
+echo.Processing complete, press any key to exit...
 pause>nul
 
 goto :eof
@@ -88,7 +88,7 @@ goto :eof
 echo.^<^^!doctype html^>
 echo.^<html^>
 echo.^<head^>
-echo.^<title^>命令提示符帮助信息^</title^>
+echo.^<title^>Command Prompt Help Information^</title^>
 echo.^<style^>
 echo.body{overflow-x:hidden;}
 echo.#catalogue{top:0px;position:fixed;width:350px;overflow:auto; height:100%%;background:#F7F7F7;}

@@ -71,15 +71,15 @@ Then, create the configuration file `/opt/homebrew/etc/wireguard/wg0.conf`:
 ```bash
 cat <<EOF > /opt/homebrew/etc/wireguard/wg0.conf
 [Interface]
-PrivateKey = <private key A> # macOS的私钥
-Address = 10.0.0.2/24 # macOS的WireGuard IP
-ListenPort = 51820 # WireGuard监听端口
+PrivateKey = <private key A> # private key for macOS
+Address = 10.0.0.2/24 # WireGuard IP for macOS
+ListenPort = 51820 # listening port for WireGuard
 PostUp = ifconfig lo0 inet 100.64.64.64/30 100.64.64.64 alias
 PostDown = ifconfig lo0 inet 100.64.64.64/30 100.64.64.64 delete
 
 [Peer]
-PublicKey = <public key B> # Podman虚拟机的公钥
-AllowedIPs = 10.2.0.0/16, 10.0.0.1/32 # 桥接网络的范围
+PublicKey = <public key B> # public key for Podman VM
+AllowedIPs = 10.2.0.0/16, 10.0.0.1/32 # range of the bridge network
 PersistentKeepalive = 25
 EOF
 ```
@@ -111,14 +111,14 @@ podman machine ssh
 ```bash
 cat << EOF > /etc/wireguard/wg0.conf
 [Interface]
-PrivateKey = <private key B> # Podman虚拟机的私钥
-Address = 10.0.0.1/24 # Podman虚拟机的WireGuard IP
+PrivateKey = <private key B> # private key for the Podman VM
+Address = 10.0.0.1/24 # WireGuard IP for Podman VM
 PostUp = iptables -A FORWARD -i %i -j ACCEPT
 PostDown = iptables -D FORWARD -i %i -j ACCEPT
 
 [Peer]
-PublicKey = <public key A> # macOS的公钥
-AllowedIPs = 10.0.0.2/32 # macOS的WireGuard IP
+PublicKey = <public key A> # public key for macOS
+AllowedIPs = 10.0.0.2/32 # WireGuard IP for macOS
 Endpoint = 100.64.64.64:51820
 PersistentKeepalive = 25
 EOF

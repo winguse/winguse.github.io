@@ -18,7 +18,7 @@ stack<int> st;
 
 void test(int x){
   int i;
-  if(pos==MaxN){//已经全部出去了，打印结果
+  if(pos==MaxN){//all elements have been popped, print the result
     cnt++;
     printf("%5d:",cnt);
     for(i=0;i<pos-1;i++)
@@ -26,22 +26,22 @@ void test(int x){
     printf("%3dn",res[i]);
     return;
   }
-  //对于每一个新元素入栈，我们决策一下它前面的元素什么时候出栈
+  //for each new element pushed, decide when the elements before it pop
   if(!st.empty()){
-    //一个个测试，当前栈顶的出去了
+    //test one by one: pop the current stack top
     res[pos++]=st.top();
     st.pop();
-    //下一次递归再同样决策
+    //let the next recursion make the same decision
     test(x);
-    //递归返回了，把出去的拉回来
+    //recursion returned, put the popped element back
     st.push(res[--pos]);
   }
-  if(x>MaxN)return;//大于MaxN的不考虑了
-  //当前要决策的元素，可以加到栈里面了
+  if(x>MaxN)return;//ignore elements greater than MaxN
+  //the current element to decide on can now be pushed onto the stack
   st.push(x);
-  //决策下一个元素
+  //decide on the next element
   test(x+1);
-  //状态还原，刚刚放进去的出来，好返回上一个数字继续找
+  //restore state: the element just pushed comes out, so we can return to the previous number and keep searching
   st.pop();
 }
 
