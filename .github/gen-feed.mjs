@@ -45,7 +45,7 @@ function createFeed(lang) {
 
 function extractDate($, pagePath) {
   const scriptHtml = $("small script").html();
-  const tsMatch = scriptHtml?.match(/(\d+)/);
+  const tsMatch = scriptHtml?.match(/new Date\((\d+)\)/);
   if (tsMatch) return new Date(Number(tsMatch[1]));
   const pathMatch = pagePath.match(/^\/(\d{4})\/(\d{2})\/(\d{2})\//);
   if (pathMatch) {
@@ -97,8 +97,12 @@ async function addItemsToFeed(feed, pages) {
   }
 }
 
-const zhPages = selectedPages.filter(({ path }) => !path.endsWith("/en")).slice(0, 10);
-const enPages = selectedPages.filter(({ path }) => path.endsWith("/en")).slice(0, 10);
+function isEnglishPath(path) {
+  return /\/en(?:\.html)?$/.test(path);
+}
+
+const zhPages = selectedPages.filter(({ path }) => !isEnglishPath(path)).slice(0, 10);
+const enPages = selectedPages.filter(({ path }) => isEnglishPath(path)).slice(0, 10);
 
 const zhFeed = createFeed("zh");
 const enFeed = createFeed("en");
