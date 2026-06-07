@@ -194,7 +194,7 @@ export default {
       } else {
         targetLink = basePath === "/index" ? "/" : basePath + ".html";
       }
-      switcher = `<div style="float: right; margin-top: 10px;">
+      switcher = `<div style="position: absolute; top: 10px; right: 10px;">
         <a href="${targetLink}" onclick="localStorage.setItem('lang', '${otherLang}')">${otherLang === "en" ? "English" : "中文"}</a>
       </div>`;
     }
@@ -205,7 +205,10 @@ export default {
       : "";
     return `${switcher}<h1>${title}</h1><small>${timeScript} <img src="https://winguse.com/view-counter?r=wingu.se${fullPath}" style="vertical-align: middle; height: 1em;"/></small>`;
   }, // what to show in the header (HTML)
-  footer: `
+  footer: ({ path }) => {
+    const isEn = path.replace(/\.html$/, "").endsWith("/en");
+    const feedEnSuffix = isEn ? "-en" : "";
+    return `
 <section id="isso-thread">
     <noscript>Javascript needs to be activated to view comments.</noscript>
 </section>
@@ -215,14 +218,12 @@ export default {
   ${[
     ["github", "winguse", "https://github.com/winguse"],
     ["mastodon", "winguse", "https://m.wingu.se/@winguse"],
-    ["rss", "RSS", "https://wingu.se/rss.xml"],
-    ["rss", "Atom", "https://wingu.se/atom.xml"],
-    ["rss", "RSS (EN)", "https://wingu.se/rss-en.xml"],
-    ["rss", "Atom (EN)", "https://wingu.se/atom-en.xml"],
+    ["rss", "RSS", `https://wingu.se/rss${feedEnSuffix}.xml`],
+    ["rss", "Atom", `https://wingu.se/atom${feedEnSuffix}.xml`],
   ]
     .map(
       ([icon, username, url]) => `
-  <a href="${url}">
+  <a href="${url}"${icon !== "rss" ? ' rel="me"' : ""}>
     <svg class="svg-icon">
       <use xlink:href="https://wingu.se/minima-social-icons.svg#${icon}"></use>
     </svg>
@@ -233,7 +234,8 @@ export default {
     .join("")}
 <a href="https://comments.wingu.se:8443/about" style="width: 0; height: 0; display: block; overflow: hidden;">Honeypot</a>
 </div>
-  `, // what to show in the footer (HTML)
+  `;
+  }, // what to show in the footer (HTML)
   // sidebar: true, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
