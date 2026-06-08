@@ -14,14 +14,19 @@ Assume that weekly data and daily data are both loaded starting from the cycle b
 ```tex
  7n \mod 36 = n \mod 26 + k
 ```
+
 Let:
+
 ```tex
  7n = 36x + a \\ n = 26y + b
 ```
+
 where:
+
 ```tex
  a = b + k
 ```
+
 Then:
 
 ```tex

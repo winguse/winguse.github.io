@@ -14,14 +14,19 @@ daily 的好说 ${tex`\frac{180}{36} = 5`}，正好整除。但是呢，monthly 
 ```tex
  7n \mod 36 = n \mod 26 + k
 ```
+
 令：
+
 ```tex
  7n = 36x + a \\ n = 26y + b
 ```
+
 其中：
+
 ```tex
  a = b + k
 ```
+
 则：
 
 ```tex
