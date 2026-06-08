@@ -11,7 +11,9 @@
   "dependencies": {
     "@observablehq/framework": "^1.7.0",
     "d3-dsv": "^3.0.1",
-    "d3-time-format": "^4.1.0"
+    "d3-time-format": "^4.1.0",
+    "markdown-it-mathjax3": "^5.2.0",
+    "mathjax": "^4.1.2"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.12",

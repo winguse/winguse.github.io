@@ -1,3 +1,4 @@
+import mathjax from "markdown-it-mathjax3";
 import { promises as fs } from "fs";
 import path from "path";
 
@@ -104,6 +105,10 @@ async function listAndGroupMarkdownFiles(dir) {
 
 // See https://observablehq.com/framework/config for documentation.
 export default {
+  markdownIt: (md) => md.use(mathjax),
+
+
+
   // The project’s title; used in the sidebar and webpage titles.
   title: "Yingyu Pages",
 

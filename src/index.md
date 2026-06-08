@@ -51,7 +51,7 @@ const zhaoqing0 = {
   latitude: 23.04,
   weight: 19,
 };
-const changcun = {
+const changchun = {
   longitude: 125.32,
   latitude: 43.81,
   weight: 4,
@@ -76,7 +76,7 @@ const seattle = {
   latitude: 47.6,
   weight: (new Date()).getFullYear() - 2023,
 };
-const visited = [zhaoqing0, changcun, beijing, zhaoqing1, sunnyvale, seattle];
+const visited = [zhaoqing0, changchun, beijing, zhaoqing1, sunnyvale, seattle];
 visited.forEach((v) => (v.weight = Math.log(Math.log(v.weight))));
 ```
 
