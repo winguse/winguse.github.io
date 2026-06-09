@@ -111,7 +111,7 @@ After submitting the solution and getting AC, I wasn't satisfied with letting a 
 
 Rewriting it in JavaScript meant that, although more than 50% of the code no longer needed to be written, many places still required special handling because of the peculiarities of JavaScript variables, especially arrays and strings. Still, it was fairly easy. With Observable's interactive capabilities, we can run it directly on the webpage:
 
-```js
+```js echo
 const container = document.createElement("div");
 container.innerHTML = `
 <div id="msg" style="color: red; height: 1.5em; margin-bottom: 10px;"></div>

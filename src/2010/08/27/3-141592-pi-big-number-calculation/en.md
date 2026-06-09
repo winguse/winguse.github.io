@@ -5,22 +5,24 @@ date: 2010-08-27 14:41:45 +0000
 
 1. Formula used:
 
-> `PI=2+1/3*(2+2/5*(2+3/7*(2+…(2+k/(k+1)*2)))….)))`
+```tex
+\pi = 2 + \frac{1}{3} \left( 2 + \frac{2}{5} \left( 2 + \frac{3}{7} \left( 2 + \dots \left( 2 + \frac{k}{2k+1} \times 2 \right) \dots \right) \right) \right)
+```
 
 Simplified into an iterative form:
 
-- Initial value: PI=2
+- Initial value: ${tex`\pi = 2`}
 - Iterative loop:
 
-  - PI=PI*i/(2*i+1)+2
+  - ${tex`\pi = \frac{i}{2i + 1} \pi + 2`}
   - Here, `i` is the iteration variable, going from a very large number down to 1. As long as this number is large enough,
-  - the precision of PI will be higher.
+  - the precision of ${tex`\pi`} will be higher.
 
   The formula came from the internet, but the original URL has been lost. Sorry about that.
 
 2. To ensure efficiency, the arbitrary-precision arithmetic uses base 10000.
 
-3. Because of the limitations of this arbitrary-precision problem, it cannot multiply/divide by a relatively large number (the multiplication result cannot exceed 31 bits, and the divisor in division cannot exceed 31 bits; multiplication is relatively easier to handle, while division is more troublesome), so it cannot compute PI to infinitely many digits.
+3. Because of the limitations of this arbitrary-precision problem, it cannot multiply/divide by a relatively large number (the multiplication result cannot exceed 31 bits, and the divisor in division cannot exceed 31 bits; multiplication is relatively easier to handle, while division is more troublesome), so it cannot compute ${tex`\pi`} to infinitely many digits.
 
 4. Discussion of the processing limits of this program
 
@@ -35,7 +37,7 @@ The details are as follows:
 ```
 
 Actually, this program is already rather inefficient. Even if the implementation limit were not reached, continuing to calculate would not be very meaningful.
-So I did not further modify the arbitrary-precision algorithm here. If you want much greater precision, it's better to switch to a different algorithm for PI.
+So I did not further modify the arbitrary-precision algorithm here. If you want much greater precision, it's better to switch to a different algorithm for ${tex`\pi`}.
 
 5. The number of iterations is roughly 3.4 times the number of digits of precision required.
 
