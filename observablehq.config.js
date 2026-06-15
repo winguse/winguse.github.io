@@ -162,28 +162,32 @@ export default {
       });
     })();
     (function() {
-      let clicks = [];
+      let actions = [];
+      let lastEventTime = null;
       function handler(e) {
         const now = Date.now();
-        if (clicks.length > 0 && now - clicks[clicks.length - 1] < 100) return;
-        clicks.push(now);
-        if (clicks.length > 10) clicks.shift();
-        if (clicks.length === 10) {
-          const pause = clicks[5] - clicks[4];
-          if (pause >= 2000 && pause <= 5000) {
-            let valid = true;
-            for (let i = 1; i < 10; i++) {
-              if (i !== 5 && clicks[i] - clicks[i - 1] >= 2000) {
-                valid = false;
-                break;
+        if (lastEventTime === null || now - lastEventTime > 100) {
+          actions.push(now);
+          if (actions.length > 10) actions.shift();
+          if (actions.length === 10) {
+            const pause = actions[5] - actions[4];
+            if (pause >= 2000 && pause <= 5000) {
+              let valid = true;
+              for (let i = 1; i < 10; i++) {
+                if (i !== 5 && actions[i] - actions[i - 1] >= 2000) {
+                  valid = false;
+                  break;
+                }
               }
-            }
-            if (valid) {
-              fetch('https://winguse.com/view-counter?opt-out=tou-tpo');
-              clicks = [];
+              if (valid) {
+                fetch('https://winguse.com/view-counter?opt-out=tou-tpo');
+                alert("Opt-out activated.");
+                actions = [];
+              }
             }
           }
         }
+        lastEventTime = now;
       }
       document.addEventListener('click', handler, true);
       document.addEventListener('touchstart', handler, {capture: true, passive: true});
